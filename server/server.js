@@ -185,8 +185,17 @@ const STAFF_ROLE_ID = process.env.STAFF_ROLE_ID || '1547640722013036637';
 const OWNER_ROLE_ID = process.env.OWNER_ROLE_ID || '1547640722013036637';
 const GUILD_OWNER_ID = process.env.GUILD_OWNER_ID || '480805055595806722';
 const ASSIGN_LOG_CHANNEL_ID = process.env.ASSIGN_LOG_CHANNEL_ID || '1547753183424806983';
-const ADMIN_SECRET_KEY = process.env.ADMIN_SECRET_KEY || 'gx-admin-2026';
-const REDIRECT_URI = process.env.DISCORD_REDIRECT_URI || 'http://localhost:8080/auth/discord/callback';
+function getRedirectUri(req) {
+  if (process.env.DISCORD_REDIRECT_URI && 
+      !process.env.DISCORD_REDIRECT_URI.includes('YOUR_') && 
+      !process.env.DISCORD_REDIRECT_URI.includes('localhost') && 
+      !process.env.DISCORD_REDIRECT_URI.includes('production')) {
+    return process.env.DISCORD_REDIRECT_URI;
+  }
+  const host = (req && req.headers && (req.headers['x-forwarded-host'] || req.headers.host)) || 'gx-menus.up.railway.app';
+  const proto = (req && req.headers && req.headers['x-forwarded-proto']) || 'https';
+  return `${proto}://${host}/auth/discord/callback`;
+}
 
 app.use(express.json());
 app.use(cookieParser('gx-secret-key-2026'));
@@ -330,7 +339,8 @@ app.get('/auth/discord', (req, res) => {
 
   const from = req.query.from || (req.headers.referer && req.headers.referer.includes('admin') ? 'admin' : 'dashboard');
   const scope = encodeURIComponent('identify');
-  const discordAuthUrl = 'https://discord.com/api/oauth2/authorize?client_id=' + CLIENT_ID + '&redirect_uri=' + encodeURIComponent(REDIRECT_URI) + '&response_type=code&scope=' + scope + '&state=' + encodeURIComponent(from);
+  const redirectUri = getRedirectUri(req);
+  const discordAuthUrl = 'https://discord.com/api/oauth2/authorize?client_id=' + CLIENT_ID + '&redirect_uri=' + encodeURIComponent(redirectUri) + '&response_type=code&scope=' + scope + '&state=' + encodeURIComponent(from);
   res.redirect(discordAuthUrl);
 });
 
@@ -344,6 +354,7 @@ app.get('/auth/discord/callback', async (req, res) => {
   }
 
   try {
+    const redirectUri = getRedirectUri(req);
     // 1. Exchange code for Access Token
     const tokenRes = await fetch('https://discord.com/api/oauth2/token', {
       method: 'POST',
@@ -353,7 +364,7 @@ app.get('/auth/discord/callback', async (req, res) => {
         client_secret: CLIENT_SECRET,
         grant_type: 'authorization_code',
         code: code,
-        redirect_uri: REDIRECT_URI
+        redirect_uri: redirectUri
       })
     });
 
