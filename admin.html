@@ -2047,7 +2047,7 @@
   <!-- ==========================================================================
        SECURITY CLEARANCE GATEWAY SCREEN (STRICT OWNER ROLE ONLY)
        ========================================================================== -->
-  <div id="gate-screen" class="gate-overlay" style="display: none;">
+  <div id="gate-screen" class="gate-overlay">
     <div class="gate-card">
       <img class="gate-logo" src="images/logo.png" alt="GX LOGO">
       <h2 class="gate-title">👑 OWNER COMMAND CONSOLE</h2>
@@ -4765,7 +4765,11 @@
         .replace(/'/g, '&#039;');
     }
 
-    window.addEventListener('DOMContentLoaded', initAdmin);
+    if (document.readyState === 'loading') {
+      window.addEventListener('DOMContentLoaded', initAdmin);
+    } else {
+      initAdmin();
+    }
   
     // ── LOADER BUILD MANAGER LOGIC ──────────────────────────────────────────
     function updateSelectedFileName(input) {
