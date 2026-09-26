@@ -2174,7 +2174,7 @@ app.get('/api/media-proxy', async (req, res) => {
   return res.status(200).send(svg);
 });
 
-app.listen(PORT, () => {
+app.listen(PORT, '0.0.0.0', () => {
   console.log('====================================================');
   console.log(' GX MENU FULLSTACK SERVER RUNNING ON PORT ' + PORT);
   console.log(' Required Role ID: ' + CLIENT_ROLE_ID);

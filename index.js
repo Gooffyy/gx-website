@@ -1,43 +1,35 @@
 // ==============================================================================
 // GX MENU — RAILWAY UNIFIED ECOSYSTEM RUNNER
-// Launches both the Express Web Server and the Discord Bot simultaneously
+// Launches both the Express Web Server and the Discord Bot concurrently
 // ==============================================================================
-const { fork } = require('child_process');
 const path = require('path');
+require('dotenv').config({ path: path.join(__dirname, '.env') });
 
 console.log('====================================================');
 console.log('🚀 [RAILWAY RUNNER] Launching GX MENU Ecosystem...');
+console.log('   Port: ' + (process.env.PORT || 8080));
 console.log('====================================================');
 
-// 1. Spawn Web Server
-const serverProcess = fork(path.join(__dirname, 'server/server.js'), [], {
-  stdio: 'inherit'
+// Global Error Interceptors
+process.on('unhandledRejection', error => {
+  console.error('[UNHANDLED REJECTION]', (error && error.message) || error);
+});
+process.on('uncaughtException', error => {
+  console.error('[UNCAUGHT EXCEPTION]', (error && error.message) || error);
 });
 
-serverProcess.on('exit', (code, signal) => {
-  console.warn(`[SERVER PROCESS] Exited with code: ${code}, signal: ${signal}`);
-});
+// 1. Launch Express Web Portal
+try {
+  require('./server/server.js');
+  console.log('✅ [RAILWAY RUNNER] Express Web Server initialized.');
+} catch (err) {
+  console.error('❌ [RAILWAY RUNNER] Web Server failed to start:', err);
+}
 
-// 2. Spawn Discord Bot
-const botProcess = fork(path.join(__dirname, 'bot/bot.js'), [], {
-  stdio: 'inherit'
-});
-
-botProcess.on('exit', (code, signal) => {
-  console.warn(`[BOT PROCESS] Exited with code: ${code}, signal: ${signal}`);
-});
-
-// Graceful process termination handlers for Railway container lifecycle
-process.on('SIGTERM', () => {
-  console.log('🛑 [RAILWAY] SIGTERM received. Gracefully terminating child processes...');
-  serverProcess.kill('SIGTERM');
-  botProcess.kill('SIGTERM');
-  process.exit(0);
-});
-
-process.on('SIGINT', () => {
-  console.log('🛑 [RAILWAY] SIGINT received. Shutting down...');
-  serverProcess.kill('SIGINT');
-  botProcess.kill('SIGINT');
-  process.exit(0);
-});
+// 2. Launch Discord Bot
+try {
+  require('./bot/bot.js');
+  console.log('✅ [RAILWAY RUNNER] Discord Bot initialized.');
+} catch (err) {
+  console.error('❌ [RAILWAY RUNNER] Discord Bot failed to start:', err);
+}
