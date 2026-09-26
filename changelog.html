@@ -1,0 +1,674 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>UPDATE CHANGELOG &mdash; GX MENU | FIVEM SOFTWARE BRAND</title>
+  <meta name="description" content="Release notes, security patches, and version history for GX MENU FiveM cheat software.">
+  <link rel="icon" type="image/png" href="images/logo.png">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Michroma&family=Orbitron:wght@600;800;900&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="css/style.css">
+
+  <style>
+    /* =============================================
+       CHANGELOG PREMIUM REDESIGN
+       ============================================= */
+    .cl-hero {
+      padding: 120px 0 60px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .cl-hero::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background:
+        radial-gradient(ellipse at 50% 0%, rgba(193,42,255,0.18) 0%, transparent 60%),
+        radial-gradient(ellipse at 20% 80%, rgba(155,0,255,0.10) 0%, transparent 50%);
+      pointer-events: none;
+    }
+    .cl-hero-breadcrumb {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      font-family: 'Michroma', sans-serif;
+      font-size: 0.72rem;
+      letter-spacing: 0.25em;
+      color: rgba(193,42,255,0.7);
+      margin-bottom: 24px;
+    }
+    .cl-hero-breadcrumb a { color: rgba(255,255,255,0.5); text-decoration: none; }
+    .cl-hero-breadcrumb a:hover { color: #C12AFF; }
+    .cl-hero-title {
+      font-family: 'Orbitron', sans-serif;
+      font-size: clamp(2rem, 6vw, 4rem);
+      font-weight: 900;
+      letter-spacing: 0.08em;
+      margin: 0 0 16px;
+      line-height: 1;
+    }
+    .cl-hero-subtitle {
+      font-family: 'Michroma', sans-serif;
+      font-size: 0.85rem;
+      letter-spacing: 0.2em;
+      color: rgba(255,255,255,0.45);
+    }
+
+    /* Filter tabs */
+    .cl-filters {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      flex-wrap: wrap;
+      margin: 40px 0;
+    }
+    .cl-filter-btn {
+      background: rgba(10,4,18,0.7);
+      border: 1px solid rgba(193,42,255,0.2);
+      color: rgba(255,255,255,0.55);
+      font-family: 'Michroma', sans-serif;
+      font-size: 0.7rem;
+      letter-spacing: 0.18em;
+      padding: 8px 18px;
+      border-radius: 4px;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    .cl-filter-btn:hover, .cl-filter-btn.active {
+      background: rgba(193,42,255,0.15);
+      border-color: rgba(193,42,255,0.6);
+      color: #fff;
+    }
+
+    /* TIMELINE */
+    .cl-timeline-section { padding: 20px 0 100px; }
+    .cl-timeline {
+      position: relative;
+      max-width: 860px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+    /* Center spine line */
+    .cl-timeline::before {
+      content: '';
+      position: absolute;
+      left: 50%;
+      top: 0; bottom: 0;
+      width: 1px;
+      background: linear-gradient(to bottom,
+        transparent 0%,
+        rgba(193,42,255,0.6) 5%,
+        rgba(193,42,255,0.3) 90%,
+        transparent 100%
+      );
+      transform: translateX(-50%);
+    }
+    @media (max-width: 700px) {
+      .cl-timeline::before { left: 22px; }
+    }
+
+    /* Entry */
+    .cl-entry {
+      display: grid;
+      grid-template-columns: 1fr 48px 1fr;
+      gap: 0 0;
+      margin-bottom: 60px;
+      position: relative;
+    }
+    .cl-entry:nth-child(even) .cl-card { grid-column: 3; }
+    .cl-entry:nth-child(even) .cl-spacer { grid-column: 1; }
+    .cl-entry:nth-child(odd)  .cl-card { grid-column: 1; }
+    .cl-entry:nth-child(odd)  .cl-spacer { grid-column: 3; }
+    .cl-dot-col {
+      grid-column: 2;
+      display: flex;
+      align-items: flex-start;
+      justify-content: center;
+      padding-top: 18px;
+      position: relative;
+      z-index: 2;
+    }
+    @media (max-width: 700px) {
+      .cl-entry { grid-template-columns: 44px 1fr; }
+      .cl-entry:nth-child(even) .cl-card,
+      .cl-entry:nth-child(odd)  .cl-card { grid-column: 2; }
+      .cl-entry:nth-child(even) .cl-spacer,
+      .cl-entry:nth-child(odd)  .cl-spacer { display: none; }
+      .cl-dot-col { grid-column: 1; }
+    }
+
+    /* Dot */
+    .cl-dot {
+      width: 16px; height: 16px;
+      border-radius: 50%;
+      background: #0a0412;
+      border: 2px solid #C12AFF;
+      box-shadow: 0 0 12px rgba(193,42,255,0.8), 0 0 24px rgba(193,42,255,0.4);
+      position: relative;
+    }
+    .cl-dot.latest { background: #C12AFF; }
+    .cl-dot.major  { border-color: #E040FB; box-shadow: 0 0 12px rgba(224,64,251,0.8); }
+    .cl-dot.patch  { border-color: rgba(193,42,255,0.5); box-shadow: 0 0 8px rgba(193,42,255,0.4); }
+
+    /* Card */
+    .cl-card {
+      background: rgba(12,6,24,0.85);
+      border: 1px solid rgba(193,42,255,0.2);
+      border-radius: 12px;
+      padding: 24px 26px;
+      position: relative;
+      transition: border-color 0.3s, box-shadow 0.3s;
+      backdrop-filter: blur(12px);
+    }
+    .cl-card:hover {
+      border-color: rgba(193,42,255,0.55);
+      box-shadow: 0 8px 32px rgba(122,0,255,0.2);
+    }
+    .cl-card-top {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-bottom: 16px;
+    }
+    .cl-ver {
+      font-family: 'Orbitron', sans-serif;
+      font-size: 1.1rem;
+      font-weight: 800;
+      letter-spacing: 0.1em;
+      color: #fff;
+    }
+    .cl-date {
+      font-family: 'Michroma', sans-serif;
+      font-size: 0.68rem;
+      letter-spacing: 0.2em;
+      color: rgba(255,255,255,0.35);
+      padding-top: 4px;
+    }
+    .cl-badges { display: flex; gap: 6px; flex-wrap: wrap; margin-bottom: 16px; }
+    .cl-badge {
+      font-family: 'Michroma', sans-serif;
+      font-size: 0.6rem;
+      letter-spacing: 0.15em;
+      padding: 3px 10px;
+      border-radius: 3px;
+    }
+    .cl-badge-latest { background: rgba(193,42,255,0.2); border: 1px solid rgba(193,42,255,0.5); color: #C12AFF; }
+    .cl-badge-major  { background: rgba(224,64,251,0.15); border: 1px solid rgba(224,64,251,0.4); color: #E040FB; }
+    .cl-badge-patch  { background: rgba(255,184,0,0.1); border: 1px solid rgba(255,184,0,0.3); color: #FFB800; }
+    .cl-badge-security { background: rgba(255,51,102,0.15); border: 1px solid rgba(255,51,102,0.4); color: #FF3366; }
+
+    /* Items list */
+    .cl-items { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 10px; }
+    .cl-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      font-size: 0.88rem;
+      line-height: 1.55;
+      color: rgba(255,255,255,0.75);
+    }
+    .cl-item-tag {
+      font-family: 'Michroma', sans-serif;
+      font-size: 0.58rem;
+      letter-spacing: 0.15em;
+      padding: 2px 8px;
+      border-radius: 3px;
+      flex-shrink: 0;
+      margin-top: 2px;
+    }
+    .tag-new      { background: rgba(0,212,255,0.15); border: 1px solid rgba(0,212,255,0.35); color: #00D4FF; }
+    .tag-improved { background: rgba(193,42,255,0.15); border: 1px solid rgba(193,42,255,0.35); color: #C12AFF; }
+    .tag-fixed    { background: rgba(255,184,0,0.12); border: 1px solid rgba(255,184,0,0.3); color: #FFB800; }
+    .tag-security { background: rgba(255,51,102,0.12); border: 1px solid rgba(255,51,102,0.3); color: #FF3366; }
+    .tag-feature  { background: rgba(0,255,136,0.1); border: 1px solid rgba(0,255,136,0.3); color: #00FF88; }
+
+    /* Spacer col */
+    .cl-spacer {}
+
+    /* Latest banner top */
+    .cl-latest-banner {
+      text-align: center;
+      padding: 20px;
+      background: linear-gradient(90deg, transparent, rgba(193,42,255,0.08), transparent);
+      border: 1px solid rgba(193,42,255,0.2);
+      border-radius: 8px;
+      margin-bottom: 50px;
+      font-family: 'Michroma', sans-serif;
+      font-size: 0.72rem;
+      letter-spacing: 0.2em;
+      color: rgba(193,42,255,0.8);
+    }
+  </style>
+</head>
+<body>
+
+  <canvas id="ambient-canvas" class="ambient-canvas"></canvas>
+  <div class="volumetric-smoke-container">
+    <div class="smoke-cloud smoke-cloud-1"></div>
+    <div class="smoke-cloud smoke-cloud-2"></div>
+    <div class="smoke-cloud smoke-cloud-3"></div>
+  </div>
+
+  <!-- Header -->
+  <header class="site-header">
+    <div class="nav-container">
+      <a href="index.html#hero" class="brand-link">
+        <img src="images/logo.png" alt="GX MENU Logo" class="brand-logo-img">
+        <div class="brand-title-group">
+          <div class="brand-name">
+            <span class="word-metallic">GX</span>
+            <span class="word-purple">MENU</span>
+          </div>
+          <span class="brand-tagline">CONTROL BEYOND LIMITS</span>
+        </div>
+      </a>
+      <nav>
+        <ul class="nav-menu">
+          <li class="nav-item"><a href="index.html#features">FEATURES</a></li>
+          <li class="nav-item"><a href="index.html#showcase">SHOWCASE</a></li>
+          <li class="nav-item"><a href="index.html#pricing">PRICING</a></li>
+          <li class="nav-item"><a href="index.html#status">STATUS</a></li>
+          <li class="nav-item"><a href="changelog.html" style="color:#C12AFF;">CHANGELOG</a></li>
+          <li class="nav-item"><a href="dashboard.html" class="nav-portal-btn">PORTAL</a></li>
+        </ul>
+      </nav>
+      <div class="nav-actions">
+        <a href="https://discord.gg" target="_blank" rel="noopener noreferrer" class="btn-discord" title="Join Discord Community">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M20.317 4.37a19.791 19.791 0 0 0-4.885-1.515.074.074 0 0 0-.079.037c-.21.375-.444.864-.608 1.25a18.27 18.27 0 0 0-5.487 0 12.64 12.64 0 0 0-.617-1.25.077.077 0 0 0-.079-.037A19.736 19.736 0 0 0 3.677 4.37a.07.07 0 0 0-.032.027C.533 9.046-.32 13.58.099 18.057a.082.082 0 0 0 .031.057 19.9 19.9 0 0 0 5.993 3.03.078.078 0 0 0 .084-.028c.462-.63.874-1.295 1.226-1.994.021-.041.001-.09-.041-.106a13.107 13.107 0 0 1-1.872-.892.077.077 0 0 1-.008-.128 10.2 10.2 0 0 0 .372-.292.074.074 0 0 1 .077-.01c3.929 1.793 8.18 1.793 12.061 0a.074.074 0 0 1 .078.01c.12.098.246.198.373.292a.077.077 0 0 1-.006.127 12.299 12.299 0 0 1-1.873.893.077.077 0 0 0-.041.107c.36.698.772 1.362 1.225 1.993a.076.076 0 0 0 .084.028 19.839 19.839 0 0 0 6.002-3.03.077.077 0 0 0 .032-.054c.5-5.177-.838-9.674-3.549-13.66a.061.061 0 0 0-.031-.028zM8.02 15.33c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.956-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.956 2.418-2.157 2.418zm7.975 0c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.955-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.946 2.418-2.157 2.418z"/></svg>
+          <span>DISCORD</span>
+        </a>
+        <button class="mobile-menu-btn" aria-label="Toggle navigation">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- HERO -->
+  <section class="cl-hero">
+    <div class="section-container">
+      <div class="cl-hero-breadcrumb">
+        <a href="index.html">HOME</a>
+        <span>/</span>
+        <span>CHANGELOG</span>
+      </div>
+      <h1 class="cl-hero-title">
+        <span class="word-metallic">UPDATE</span> <span class="word-purple">CHANGELOG</span>
+      </h1>
+      <p class="cl-hero-subtitle">CONTINUOUS INNOVATION &bull; ZERO-DAY ADAPTIONS &bull; EVERY BUILD TRACKED</p>
+    </div>
+  </section>
+
+  <!-- FILTERS -->
+  <div class="section-container">
+    <div class="cl-filters">
+      <button class="cl-filter-btn active" onclick="filterCL('all', this)">ALL VERSIONS</button>
+      <button class="cl-filter-btn" onclick="filterCL('security', this)">SECURITY</button>
+      <button class="cl-filter-btn" onclick="filterCL('feature', this)">FEATURES</button>
+      <button class="cl-filter-btn" onclick="filterCL('fix', this)">FIXES</button>
+    </div>
+  </div>
+
+  <!-- TIMELINE -->
+  <section class="cl-timeline-section">
+    <div class="section-container">
+
+      <div class="cl-latest-banner">
+        &#11044; CURRENTLY ON VERSION 1.15 &bull; ALL SYSTEMS UNDETECTED &bull; LAST UPDATED: SEPTEMBER 2026
+      </div>
+
+      <div class="cl-timeline">
+
+        <!-- VERSION 1.15 (LATEST) -->
+        <div class="cl-entry" data-tags="security feature">
+          <div class="cl-card">
+            <div class="cl-card-top">
+              <span class="cl-ver">GX MENU v1.15</span>
+              <span class="cl-date">SEPTEMBER 22, 2026</span>
+            </div>
+            <div class="cl-badges">
+              <span class="cl-badge cl-badge-latest">LATEST</span>
+              <span class="cl-badge cl-badge-security">UNDETECTED</span>
+            </div>
+            <ul class="cl-items">
+              <li class="cl-item">
+                <span class="cl-item-tag tag-new">NEW</span>
+                <span>Cyberpunk chassis login UI with in-box error display and neon toast notifications.</span>
+              </li>
+              <li class="cl-item">
+                <span class="cl-item-tag tag-security">SECURITY</span>
+                <span>HWID bypass engine updated; binary-level patch ensures zero detection across all FiveM builds.</span>
+              </li>
+              <li class="cl-item">
+                <span class="cl-item-tag tag-improved">UI</span>
+                <span>ImGui notify system rewritten with ASCII icons, Top-Center positioning, and Cosmic Obsidian theme.</span>
+              </li>
+              <li class="cl-item">
+                <span class="cl-item-tag tag-feature">FEATURE</span>
+                <span>Version bump to v1.15 across all binaries, source globals, and portal interface.</span>
+              </li>
+            </ul>
+          </div>
+          <div class="cl-dot-col">
+            <div class="cl-dot latest"></div>
+          </div>
+          <div class="cl-spacer"></div>
+        </div>
+
+        <!-- VERSION 1.14 -->
+        <div class="cl-entry" data-tags="security fix">
+          <div class="cl-spacer"></div>
+          <div class="cl-dot-col">
+            <div class="cl-dot major"></div>
+          </div>
+          <div class="cl-card">
+            <div class="cl-card-top">
+              <span class="cl-ver">GX MENU v1.14</span>
+              <span class="cl-date">SEPTEMBER 17, 2026</span>
+            </div>
+            <div class="cl-badges">
+              <span class="cl-badge cl-badge-major">MAJOR UPDATE</span>
+            </div>
+            <ul class="cl-items">
+              <li class="cl-item">
+                <span class="cl-item-tag tag-security">SECURITY</span>
+                <span>Kernel HWID bypass patched at binary offsets 0xA55F4 and 0xA6004 — permanent bypass.</span>
+              </li>
+              <li class="cl-item">
+                <span class="cl-item-tag tag-improved">PORTAL</span>
+                <span>Complete web portal UI overhaul with Discord OAuth2 authentication system.</span>
+              </li>
+              <li class="cl-item">
+                <span class="cl-item-tag tag-fix">FIX</span>
+                <span>Resolved edge case memory allocation conflict on AMD Ryzen systems with SMT enabled.</span>
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- VERSION 4.8.2 -->
+        <div class="cl-entry" data-tags="security feature fix">
+          <div class="cl-card">
+            <div class="cl-card-top">
+              <span class="cl-ver">VERSION 4.8.2</span>
+              <span class="cl-date">SEPTEMBER 11, 2026</span>
+            </div>
+            <div class="cl-badges">
+              <span class="cl-badge cl-badge-security">SECURITY PATCH</span>
+            </div>
+            <ul class="cl-items">
+              <li class="cl-item">
+                <span class="cl-item-tag tag-security">SECURITY</span>
+                <span>Full kernel-level event hook bypass for FiveGuard v4.8 and Echo Anti-Cheat updates.</span>
+              </li>
+              <li class="cl-item">
+                <span class="cl-item-tag tag-improved">OPTIMIZATION</span>
+                <span>Refactored DirectX 11 overlay rendering; reduced CPU overhead by 38% on 128-player servers.</span>
+              </li>
+              <li class="cl-item">
+                <span class="cl-item-tag tag-new">PORTAL</span>
+                <span>Integrated automated key activation with Egyptian payment channels (Vodafone, InstaPay, Telda).</span>
+              </li>
+              <li class="cl-item">
+                <span class="cl-item-tag tag-fix">FIX</span>
+                <span>Resolved bone alignment offset when spectating players using custom MP character peds.</span>
+              </li>
+            </ul>
+          </div>
+          <div class="cl-dot-col">
+            <div class="cl-dot"></div>
+          </div>
+          <div class="cl-spacer"></div>
+        </div>
+
+        <!-- VERSION 4.7.0 -->
+        <div class="cl-entry" data-tags="feature security">
+          <div class="cl-spacer"></div>
+          <div class="cl-dot-col">
+            <div class="cl-dot major"></div>
+          </div>
+          <div class="cl-card">
+            <div class="cl-card-top">
+              <span class="cl-ver">VERSION 4.7.0</span>
+              <span class="cl-date">AUGUST 24, 2026</span>
+            </div>
+            <div class="cl-badges">
+              <span class="cl-badge cl-badge-major">MAJOR UPDATE</span>
+            </div>
+            <ul class="cl-items">
+              <li class="cl-item">
+                <span class="cl-item-tag tag-new">FEATURE</span>
+                <span>FiveM Build 3258 native memory structure definitions with automatic dynamic pattern scanning.</span>
+              </li>
+              <li class="cl-item">
+                <span class="cl-item-tag tag-improved">AIMBOT</span>
+                <span>Dynamic vector trajectory calculation for moving vehicles; compensated up to 350 km/h.</span>
+              </li>
+              <li class="cl-item">
+                <span class="cl-item-tag tag-security">SECURITY</span>
+                <span>HWID Spoofer updated for NVMe serials and BIOS UUIDs on 2026 motherboard chipsets (B650/Z790).</span>
+              </li>
+              <li class="cl-item">
+                <span class="cl-item-tag tag-fix">FIX</span>
+                <span>Eliminated edge-case screen flicker when toggling Discord Nitro 1440p 60fps screen share.</span>
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- VERSION 4.5.5 -->
+        <div class="cl-entry" data-tags="fix feature">
+          <div class="cl-card">
+            <div class="cl-card-top">
+              <span class="cl-ver">VERSION 4.5.5</span>
+              <span class="cl-date">JULY 14, 2026</span>
+            </div>
+            <div class="cl-badges">
+              <span class="cl-badge cl-badge-patch">STABILITY PATCH</span>
+            </div>
+            <ul class="cl-items">
+              <li class="cl-item">
+                <span class="cl-item-tag tag-improved">STREAMPROOF</span>
+                <span>Complete rewrite of DXGI swapchain hooking; 100% invisible on OBS Studio, Medal.tv, and Discord.</span>
+              </li>
+              <li class="cl-item">
+                <span class="cl-item-tag tag-new">VISUALS</span>
+                <span>Added customizable 3D weapon entity icons, player armor bars, and distance indicators.</span>
+              </li>
+              <li class="cl-item">
+                <span class="cl-item-tag tag-improved">EXPLOITS</span>
+                <span>Added No-Fall-Damage trigger and Silent Car Godmode toggle.</span>
+              </li>
+            </ul>
+          </div>
+          <div class="cl-dot-col">
+            <div class="cl-dot patch"></div>
+          </div>
+          <div class="cl-spacer"></div>
+        </div>
+
+        <!-- VERSION 4.0.0 -->
+        <div class="cl-entry" data-tags="feature security">
+          <div class="cl-spacer"></div>
+          <div class="cl-dot-col">
+            <div class="cl-dot major"></div>
+          </div>
+          <div class="cl-card">
+            <div class="cl-card-top">
+              <span class="cl-ver">VERSION 4.0.0</span>
+              <span class="cl-date">MAY 02, 2026</span>
+            </div>
+            <div class="cl-badges">
+              <span class="cl-badge cl-badge-major">RING-0 ENGINE</span>
+            </div>
+            <ul class="cl-items">
+              <li class="cl-item">
+                <span class="cl-item-tag tag-new">CORE</span>
+                <span>Transitioned entire framework to Ring-0 Kernel Virtualization. Zero memory footprint in usermode.</span>
+              </li>
+              <li class="cl-item">
+                <span class="cl-item-tag tag-new">GUI</span>
+                <span>Unveiled Cyberpunk dark neon interface with tabs, sub-menus, and instant keybind reconfiguration.</span>
+              </li>
+              <li class="cl-item">
+                <span class="cl-item-tag tag-improved">SECURITY</span>
+                <span>Polymorphic compiler pipeline; every customer receives a uniquely scrambled binary hash.</span>
+              </li>
+            </ul>
+          </div>
+        </div>
+
+      </div><!-- /cl-timeline -->
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="site-footer">
+    <div class="section-container">
+      <div class="footer-top">
+        <div class="footer-brand">
+          <img src="images/logo.png" alt="GX MENU" class="footer-logo">
+          <div>
+            <div class="brand-name">
+              <span class="word-metallic">GX</span>
+              <span class="word-purple">MENU</span>
+            </div>
+            <span class="brand-tagline">CONTROL BEYOND LIMITS</span>
+          </div>
+        </div>
+        <ul class="footer-links">
+          <li><a href="index.html">HOME</a></li>
+          <li><a href="index.html#status">STATUS</a></li>
+          <li><a href="index.html#features">FEATURES</a></li>
+          <li><a href="index.html#pricing">PRICING</a></li>
+          <li><a href="dashboard.html">PORTAL</a></li>
+          <li><a href="changelog.html">CHANGELOG</a></li>
+          <li><a href="terms.html">TERMS</a></li>
+        </ul>
+      </div>
+      <div class="footer-bottom">
+        <span>&copy; 2026 GX MENU. ALL RIGHTS RESERVED.</span>
+        <div class="meta-corner">
+          <span>SPEED &bull; CONTROL &bull; PRECISION &bull; FREEDOM</span>
+        </div>
+        <span>FIVEM SOFTWARE BRAND</span>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/main.js"></script>
+  <script>
+  function filterCL(tag, btn) {
+    document.querySelectorAll('.cl-filter-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    document.querySelectorAll('.cl-entry').forEach(entry => {
+      if (tag === 'all') {
+        entry.style.display = '';
+        return;
+      }
+      const tags = (entry.getAttribute('data-tags') || '').split(' ');
+      entry.style.display = tags.includes(tag) ? '' : 'none';
+    });
+  }
+
+  async function loadDynamicChangelog() {
+    try {
+      const res = await fetch('/api/public/changelog');
+      if (!res.ok) return;
+      const data = await res.json();
+      if (!data.entries || !data.entries.length) return;
+
+      const timeline = document.querySelector('.cl-timeline');
+      if (!timeline) return;
+
+      const latestEntry = data.entries.find(e => e.is_latest) || data.entries[0];
+      const banner = document.querySelector('.cl-latest-banner');
+      if (banner && latestEntry) {
+        banner.innerHTML = `&#11044; CURRENTLY ON VERSION ${latestEntry.version} &bull; ALL SYSTEMS UNDETECTED &bull; LAST UPDATED: ${latestEntry.date || 'RECENT'}`;
+      }
+
+      let html = '';
+      data.entries.forEach((entry, idx) => {
+        const isEven = (idx % 2 === 1);
+        const isLatest = entry.is_latest || idx === 0;
+        const dotClass = isLatest ? 'latest' : (entry.type === 'major' ? 'major' : 'patch');
+        
+        const itemTags = (entry.items || []).map(i => (typeof i === 'object' ? i.tag : 'UPDATE').toLowerCase());
+        const allTags = Array.from(new Set([entry.type || 'patch', ...itemTags])).join(' ');
+
+        const badgeType = isLatest ? 'cl-badge-latest' : (entry.type === 'security' ? 'cl-badge-security' : (entry.type === 'major' ? 'cl-badge-major' : 'cl-badge-patch'));
+        const badgeText = isLatest ? 'LATEST' : (entry.type === 'security' ? 'SECURITY PATCH' : (entry.type === 'major' ? 'MAJOR UPDATE' : 'STABILITY PATCH'));
+
+        const itemsHtml = (entry.items || []).map(item => {
+          const tag = (typeof item === 'object' ? item.tag : 'UPDATE').toUpperCase();
+          const text = typeof item === 'object' ? item.text : item;
+          let tagClass = 'tag-improved';
+          if (tag === 'SECURITY') tagClass = 'tag-security';
+          else if (tag === 'NEW') tagClass = 'tag-new';
+          else if (tag === 'FIX') tagClass = 'tag-fix';
+          else if (tag === 'FEATURE') tagClass = 'tag-new';
+          
+          return `<li class="cl-item">
+            <span class="cl-item-tag ${tagClass}">${tag}</span>
+            <span>${text}</span>
+          </li>`;
+        }).join('');
+
+        const cardHtml = `
+          <div class="cl-card">
+            <div class="cl-card-top">
+              <span class="cl-ver">${entry.version.startsWith('v') || entry.version.startsWith('GX') ? entry.version : 'GX MENU v' + entry.version}</span>
+              <span class="cl-date">${entry.date || ''}</span>
+            </div>
+            <div class="cl-badges">
+              <span class="cl-badge ${badgeType}">${badgeText}</span>
+              ${isLatest ? '<span class="cl-badge cl-badge-security">UNDETECTED</span>' : ''}
+            </div>
+            <ul class="cl-items">
+              ${itemsHtml}
+            </ul>
+          </div>`;
+
+        const dotHtml = `
+          <div class="cl-dot-col">
+            <div class="cl-dot ${dotClass}"></div>
+          </div>`;
+
+        const spacerHtml = `<div class="cl-spacer"></div>`;
+
+        if (isEven) {
+          html += `
+          <div class="cl-entry" data-tags="${allTags}">
+            ${spacerHtml}
+            ${dotHtml}
+            ${cardHtml}
+          </div>`;
+        } else {
+          html += `
+          <div class="cl-entry" data-tags="${allTags}">
+            ${cardHtml}
+            ${dotHtml}
+            ${spacerHtml}
+          </div>`;
+        }
+      });
+
+      timeline.innerHTML = html;
+    } catch (e) {
+      console.warn('Could not load dynamic changelog:', e);
+    }
+  }
+
+  document.addEventListener('DOMContentLoaded', loadDynamicChangelog);
+  </script>
+</body>
+</html>

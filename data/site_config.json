@@ -1,0 +1,65 @@
+{
+  "status": {
+    "fivem_core": {
+      "state": "operational",
+      "label": "OPERATIONAL",
+      "desc": "Build 3095 & 3258 fully supported"
+    },
+    "kernel_driver": {
+      "state": "operational",
+      "label": "UNDETECTED",
+      "desc": "Zero memory footprint in usermode"
+    },
+    "hwid_protection": {
+      "state": "operational",
+      "label": "ACTIVE",
+      "desc": "Built-in virtualized hardware spoofer"
+    },
+    "streamproof": {
+      "state": "operational",
+      "label": "INVISIBLE",
+      "desc": "OBS / Discord screen capture bypassed"
+    },
+    "last_updated": "2026-09-22T18:00:00Z",
+    "updated_by": "System"
+  },
+  "download_counter": {
+    "total_downloads": 5350,
+    "last_reset": "2026-01-01T00:00:00Z"
+  },
+  "video_showcase": {
+    "youtube_id": "jrOxoySImxc",
+    "title": "GX MENU — CONTROL BEYOND LIMITS",
+    "description": "Watch GX MENU in action. Full ESP, Silent Aim, and Kernel bypass demonstration."
+  },
+  "video_carousel": {
+    "videos": [
+      {
+        "youtube_id": "iIfUajqFuMQ",
+        "title": "فثسف",
+        "tag": "AIMBOT"
+      }
+    ],
+    "auto_play": true,
+    "interval_seconds": 8
+  },
+  "client_updates": [
+    {
+      "id": "upd_001",
+      "version": "1.15",
+      "name": "GX MENU v1.15 — Cyber Edition",
+      "description": "HWID bypass updated. New cyberpunk login UI. Kernel driver enhanced.",
+      "file_url": "/downloads/GX 1.15.exe",
+      "file_size": "6.9 MB",
+      "date": "2026-09-22",
+      "tags": [
+        "SECURITY",
+        "UI",
+        "KERNEL"
+      ],
+      "is_latest": true,
+      "is_critical": false
+    }
+  ],
+  "changelog": []
+}

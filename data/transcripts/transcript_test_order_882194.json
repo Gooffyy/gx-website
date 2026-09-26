@@ -1,0 +1,240 @@
+{
+  "id": "test_order_882194",
+  "channel_id": "1548141255710736386",
+  "channel_name": "🛒┃purchase-hekoxv",
+  "ticket_type": "purchase",
+  "created_at": "2026-09-12T01:00:00+00:00",
+  "closed_at": "2026-09-12T01:05:30+00:00",
+  "creator": {
+    "id": "1115792661790609451",
+    "name": "hekoxv",
+    "display_name": "Hamdi",
+    "avatar": "https://cdn.discordapp.com/avatars/1115792661790609451/1a1cd8d675ec936438a22a7e9070792a.png?size=1024",
+    "bot": false,
+    "top_role_color": "#00ff88",
+    "roles": [
+      {
+        "id": "1547640724604850186",
+        "name": "Client",
+        "color": "#00ff88",
+        "position": 5
+      },
+      {
+        "id": "1547640726000000001",
+        "name": "👤 Member",
+        "color": "#c12aff",
+        "position": 1
+      }
+    ],
+    "joined_at": "2026-09-10T14:30:00+00:00",
+    "created_at": "2023-06-15T09:12:00+00:00"
+  },
+  "claimed_by": {
+    "id": "999888777666555444",
+    "name": "gx_admin",
+    "display_name": "Alex (Senior Staff)",
+    "avatar": "https://cdn.discordapp.com/embed/avatars/1.png",
+    "bot": false,
+    "top_role_color": "#c12aff",
+    "roles": [
+      {
+        "id": "1547640722013036637",
+        "name": "🛡️ Staff",
+        "color": "#c12aff",
+        "position": 10
+      },
+      {
+        "id": "1547640722013036638",
+        "name": "👑 Owner",
+        "color": "#ffd700",
+        "position": 12
+      }
+    ],
+    "joined_at": "2026-01-01T00:00:00+00:00",
+    "created_at": "2021-03-20T11:00:00+00:00",
+    "claimed_at": "2026-09-12T01:01:10+00:00"
+  },
+  "closed_by": {
+    "id": "999888777666555444",
+    "name": "gx_admin",
+    "display_name": "Alex (Senior Staff)",
+    "avatar": "https://cdn.discordapp.com/embed/avatars/1.png",
+    "bot": false,
+    "top_role_color": "#c12aff",
+    "roles": [
+      {
+        "id": "1547640722013036637",
+        "name": "🛡️ Staff",
+        "color": "#c12aff",
+        "position": 10
+      }
+    ],
+    "reason": "Order Fulfilled & Reviewed"
+  },
+  "purchase_details": {
+    "plan": "Lifetime License (.99 / 1250 EGP)",
+    "payment_method": "Vodafone Cash",
+    "notes": "Fast delivery please!"
+  },
+  "rating": {
+    "score": 5,
+    "stars": "⭐⭐⭐⭐⭐",
+    "comment": "Best FiveM cheat on the market without a doubt, undetected and instant key activation!",
+    "submitted_at": "2026-09-12T01:04:26+00:00"
+  },
+  "participants": {
+    "1115792661790609451": {
+      "id": "1115792661790609451",
+      "name": "hekoxv",
+      "display_name": "Hamdi",
+      "avatar": "https://cdn.discordapp.com/avatars/1115792661790609451/1a1cd8d675ec936438a22a7e9070792a.png?size=1024",
+      "bot": false,
+      "top_role_color": "#00ff88",
+      "roles": [
+        {
+          "id": "1547640724604850186",
+          "name": "Client",
+          "color": "#00ff88",
+          "position": 5
+        },
+        {
+          "id": "1547640726000000001",
+          "name": "👤 Member",
+          "color": "#c12aff",
+          "position": 1
+        }
+      ],
+      "joined_at": "2026-09-10T14:30:00+00:00",
+      "created_at": "2023-06-15T09:12:00+00:00"
+    },
+    "999888777666555444": {
+      "id": "999888777666555444",
+      "name": "gx_admin",
+      "display_name": "Alex (Senior Staff)",
+      "avatar": "https://cdn.discordapp.com/embed/avatars/1.png",
+      "bot": false,
+      "top_role_color": "#c12aff",
+      "roles": [
+        {
+          "id": "1547640722013036637",
+          "name": "🛡️ Staff",
+          "color": "#c12aff",
+          "position": 10
+        },
+        {
+          "id": "1547640722013036638",
+          "name": "👑 Owner",
+          "color": "#ffd700",
+          "position": 12
+        }
+      ],
+      "joined_at": "2026-01-01T00:00:00+00:00",
+      "created_at": "2021-03-20T11:00:00+00:00"
+    },
+    "1547632703040651354": {
+      "id": "1547632703040651354",
+      "name": "GX Bot",
+      "display_name": "GX Bot#8557",
+      "avatar": "https://cdn.discordapp.com/embed/avatars/0.png",
+      "bot": true,
+      "top_role_color": "#5865F2",
+      "roles": [
+        {
+          "id": "1547640722013036699",
+          "name": "🤖 Bot",
+          "color": "#5865F2",
+          "position": 99
+        }
+      ],
+      "joined_at": "2026-09-01T00:00:00+00:00",
+      "created_at": "2026-09-01T00:00:00+00:00"
+    }
+  },
+  "messages": [
+    {
+      "id": "101",
+      "author_id": "1547632703040651354",
+      "author_name": "GX Bot",
+      "author_display_name": "GX Bot#8557",
+      "author_avatar": "https://cdn.discordapp.com/embed/avatars/0.png",
+      "author_bot": true,
+      "author_role_color": "#5865F2",
+      "timestamp": "2026-09-12T01:00:01+00:00",
+      "content": "<@1115792661790609451> | Sales Staff Notification: <@&1547640722013036637>",
+      "embeds": [
+        {
+          "title": "🛒 GX Key Purchase Ticket — Hamdi",
+          "description": "Welcome <@1115792661790609451>!\\nOur sales team has been notified of your purchase request.\\n\\n📋 **Selected License Plan**: Lifetime License (.99 / 1250 EGP)\\n💳 **Preferred Payment Method**: Vodafone Cash\\n📝 **Additional Order Notes**: Fast delivery please!",
+          "color": "#581c87",
+          "fields": [],
+          "footer": {
+            "text": "🤝 Staff Claim • 🛠️ Mod Menu • 🔒 Close Ticket"
+          }
+        }
+      ],
+      "attachments": []
+    },
+    {
+      "id": "102",
+      "author_id": "1115792661790609451",
+      "author_name": "hekoxv",
+      "author_display_name": "Hamdi",
+      "author_avatar": "https://cdn.discordapp.com/avatars/1115792661790609451/1a1cd8d675ec936438a22a7e9070792a.png?size=1024",
+      "author_bot": false,
+      "author_role_color": "#00ff88",
+      "timestamp": "2026-09-12T01:00:45+00:00",
+      "content": "Hello! I have sent 1250 EGP via Vodafone Cash. Here is the receipt.",
+      "embeds": [],
+      "attachments": []
+    },
+    {
+      "id": "103",
+      "author_id": "999888777666555444",
+      "author_name": "gx_admin",
+      "author_display_name": "Alex (Senior Staff)",
+      "author_avatar": "https://cdn.discordapp.com/embed/avatars/1.png",
+      "author_bot": false,
+      "author_role_color": "#c12aff",
+      "timestamp": "2026-09-12T01:01:10+00:00",
+      "content": "Payment received and verified! Welcome to GX MENU Lifetime tier.",
+      "embeds": [],
+      "attachments": []
+    },
+    {
+      "id": "104",
+      "author_id": "1547632703040651354",
+      "author_name": "GX Bot",
+      "author_display_name": "GX Bot#8557",
+      "author_avatar": "https://cdn.discordapp.com/embed/avatars/0.png",
+      "author_bot": true,
+      "author_role_color": "#5865F2",
+      "timestamp": "2026-09-12T01:02:00+00:00",
+      "content": "",
+      "embeds": [
+        {
+          "title": "🔑 GX MENU License Dispatched",
+          "description": "**License Key**: GX-LIFE-XXXX-XXXX-XXXX\\n**Tier**: Lifetime\\n**Discord Portal**: [Client Portal](http://localhost:8080/dashboard.html)\\n\\nRole **Client** has been granted.",
+          "color": "#00ff88",
+          "fields": [],
+          "footer": {
+            "text": "GX Automated Dispatch"
+          }
+        }
+      ],
+      "attachments": []
+    },
+    {
+      "id": "105",
+      "author_id": "1115792661790609451",
+      "author_name": "hekoxv",
+      "author_display_name": "Hamdi",
+      "author_avatar": "https://cdn.discordapp.com/avatars/1115792661790609451/1a1cd8d675ec936438a22a7e9070792a.png?size=1024",
+      "author_bot": false,
+      "author_role_color": "#00ff88",
+      "timestamp": "2026-09-12T01:04:00+00:00",
+      "content": "Key activated instantly and working perfectly in FiveM! Best menu ever 🔥",
+      "embeds": [],
+      "attachments": []
+    }
+  ]
+}

@@ -1,0 +1,380 @@
+{
+  "id": "purchase_1789177329_1115792661790609451",
+  "channel_id": "1548146673677762671",
+  "channel_name": "🛒┃purchase-hekoxv",
+  "ticket_type": "purchase",
+  "created_at": "2026-09-12T01:42:09.699780+00:00",
+  "closed_at": "2026-09-12T01:45:10.767088+00:00",
+  "creator": {
+    "id": "1115792661790609451",
+    "name": "hekoxv",
+    "display_name": "Hamdi",
+    "avatar": "https://cdn.discordapp.com/avatars/1115792661790609451/1a1cd8d675ec936438a22a7e9070792a.png?size=1024",
+    "bot": false,
+    "top_role_color": "#7a00ff",
+    "roles": [
+      {
+        "id": "1547640722013036637",
+        "name": "👑 Owner",
+        "color": "#7a00ff",
+        "position": 6
+      },
+      {
+        "id": "1547640723199885464",
+        "name": "🛡️ Moderator",
+        "color": "#c042ff",
+        "position": 5
+      },
+      {
+        "id": "1547640724604850186",
+        "name": "⭐ Key Holder",
+        "color": "#480085",
+        "position": 4
+      },
+      {
+        "id": "1547640725687111872",
+        "name": "👤 Member",
+        "color": "#2d0059",
+        "position": 3
+      },
+      {
+        "id": "1547650135281111050",
+        "name": "👑 Admin",
+        "color": "#a100ff",
+        "position": 2
+      },
+      {
+        "id": "1547691755854635108",
+        "name": "🤝 Friends",
+        "color": "#e070ff",
+        "position": 1
+      }
+    ],
+    "joined_at": "2026-09-10T16:34:35.794000+00:00",
+    "created_at": "2023-06-07T00:01:40.996000+00:00"
+  },
+  "claimed_by": null,
+  "closed_by": {
+    "id": "1115792661790609451",
+    "name": "hekoxv",
+    "display_name": "Hamdi",
+    "avatar": "https://cdn.discordapp.com/avatars/1115792661790609451/1a1cd8d675ec936438a22a7e9070792a.png?size=1024",
+    "bot": false,
+    "top_role_color": "#7a00ff",
+    "roles": [
+      {
+        "id": "1547640722013036637",
+        "name": "👑 Owner",
+        "color": "#7a00ff",
+        "position": 6
+      },
+      {
+        "id": "1547640723199885464",
+        "name": "🛡️ Moderator",
+        "color": "#c042ff",
+        "position": 5
+      },
+      {
+        "id": "1547640724604850186",
+        "name": "⭐ Key Holder",
+        "color": "#480085",
+        "position": 4
+      },
+      {
+        "id": "1547640725687111872",
+        "name": "👤 Member",
+        "color": "#2d0059",
+        "position": 3
+      },
+      {
+        "id": "1547650135281111050",
+        "name": "👑 Admin",
+        "color": "#a100ff",
+        "position": 2
+      },
+      {
+        "id": "1547691755854635108",
+        "name": "🤝 Friends",
+        "color": "#e070ff",
+        "position": 1
+      }
+    ],
+    "joined_at": "2026-09-10T16:34:35.794000+00:00",
+    "created_at": "2023-06-07T00:01:40.996000+00:00",
+    "reason": "Closed by hekoxv"
+  },
+  "close_reason": "Closed by hekoxv",
+  "purchase_details": {
+    "plan": "Monthly License ($6.99 / 350 EGP)",
+    "payment_method": "TapTap Send",
+    "notes": "TEST"
+  },
+  "support_details": {
+    "category": "General Inquiry",
+    "issue": "TEST"
+  },
+  "rating": {
+    "score": 5,
+    "stars": "⭐⭐⭐⭐⭐",
+    "comment": "TEST",
+    "submitted_at": "2026-09-12T01:42:51.963764+00:00"
+  },
+  "participants": {
+    "1115792661790609451": {
+      "id": "1115792661790609451",
+      "name": "hekoxv",
+      "display_name": "Hamdi",
+      "avatar": "https://cdn.discordapp.com/avatars/1115792661790609451/1a1cd8d675ec936438a22a7e9070792a.png?size=1024",
+      "bot": false,
+      "top_role_color": "#7a00ff",
+      "roles": [
+        {
+          "id": "1547640722013036637",
+          "name": "👑 Owner",
+          "color": "#7a00ff",
+          "position": 6
+        },
+        {
+          "id": "1547640723199885464",
+          "name": "🛡️ Moderator",
+          "color": "#c042ff",
+          "position": 5
+        },
+        {
+          "id": "1547640724604850186",
+          "name": "⭐ Key Holder",
+          "color": "#480085",
+          "position": 4
+        },
+        {
+          "id": "1547640725687111872",
+          "name": "👤 Member",
+          "color": "#2d0059",
+          "position": 3
+        },
+        {
+          "id": "1547650135281111050",
+          "name": "👑 Admin",
+          "color": "#a100ff",
+          "position": 2
+        },
+        {
+          "id": "1547691755854635108",
+          "name": "🤝 Friends",
+          "color": "#e070ff",
+          "position": 1
+        }
+      ],
+      "joined_at": "2026-09-10T16:34:35.794000+00:00",
+      "created_at": "2023-06-07T00:01:40.996000+00:00",
+      "reason": "Closed by hekoxv"
+    },
+    "1547632703040651354": {
+      "id": "1547632703040651354",
+      "name": "GX Bot",
+      "display_name": "GX Bot",
+      "avatar": "https://cdn.discordapp.com/avatars/1547632703040651354/1cad7f0784958f7f72fab68e01e8b428.png?size=1024",
+      "bot": true,
+      "top_role_color": "#c12aff",
+      "roles": [
+        {
+          "id": "1547636911009701928",
+          "name": "GX Bot",
+          "color": "#c12aff",
+          "position": 7
+        }
+      ],
+      "joined_at": "2026-09-10T15:56:33.329516+00:00",
+      "created_at": "2026-09-10T15:39:50.030000+00:00"
+    }
+  },
+  "messages": [
+    {
+      "id": "1548146685463498883",
+      "author_id": "1547632703040651354",
+      "author_name": "GX Bot",
+      "author_display_name": "GX Bot",
+      "author_avatar": "https://cdn.discordapp.com/avatars/1547632703040651354/1cad7f0784958f7f72fab68e01e8b428.png?size=1024",
+      "author_bot": true,
+      "author_role_color": "#c12aff",
+      "timestamp": "2026-09-12T01:42:12.989000+00:00",
+      "content": "",
+      "attachments": [],
+      "embeds": [
+        {
+          "title": null,
+          "description": "<@1115792661790609451> | Sales Staff Notification: <@&1547640722013036637>\n\n### 🛒 GX Key Purchase Ticket — Hamdi\n\nWelcome <@1115792661790609451>!\nOur sales team has been notified of your purchase request. A staff member will issue your key shortly!\n\n📋 **Selected License Plan**: Monthly License (.99 / 350 EGP)\n💳 **Preferred Payment Method**: TapTap Send\n📝 **Additional Order Notes**: TEST",
+          "color": "#581c87",
+          "fields": [],
+          "image": {
+            "url": "/images/PRE IN.png"
+          },
+          "footer": {
+            "text": "🤝 Staff Claim • 🛠️ Mod Menu • 🔒 Close Ticket"
+          },
+          "buttons": [
+            {
+              "emoji": "🤝",
+              "label": "",
+              "style": 2
+            },
+            {
+              "emoji": "🛠️",
+              "label": "",
+              "style": 2
+            },
+            {
+              "emoji": "🔒",
+              "label": "",
+              "style": 2
+            }
+          ],
+          "is_v2_container": true
+        }
+      ]
+    },
+    {
+      "id": "1548146820700442735",
+      "author_id": "1547632703040651354",
+      "author_name": "GX Bot",
+      "author_display_name": "GX Bot",
+      "author_avatar": "https://cdn.discordapp.com/avatars/1547632703040651354/1cad7f0784958f7f72fab68e01e8b428.png?size=1024",
+      "author_bot": true,
+      "author_role_color": "#c12aff",
+      "timestamp": "2026-09-12T01:42:45.232000+00:00",
+      "content": "",
+      "attachments": [],
+      "embeds": [
+        {
+          "title": null,
+          "description": "### 🤝 Ticket Claimed by Hamdi\n\nThis ticket has been officially claimed by <@1115792661790609451>!\nThey are now handling this order and will provide your key shortly.",
+          "color": "#581c87",
+          "fields": [],
+          "image": null,
+          "footer": {
+            "text": "GX Order Management • Staff Claim"
+          },
+          "is_v2_container": true
+        }
+      ]
+    },
+    {
+      "id": "1548146854070329395",
+      "author_id": "1547632703040651354",
+      "author_name": "GX Bot",
+      "author_display_name": "GX Bot",
+      "author_avatar": "https://cdn.discordapp.com/avatars/1547632703040651354/1cad7f0784958f7f72fab68e01e8b428.png?size=1024",
+      "author_bot": true,
+      "author_role_color": "#c12aff",
+      "timestamp": "2026-09-12T01:42:53.188000+00:00",
+      "content": "",
+      "attachments": [],
+      "embeds": [
+        {
+          "title": null,
+          "description": "### 🎉 Order Completed!\n\nHey <@1115792661790609451>, your purchase has been completed by <@1115792661790609451>!\n\nWe hope you enjoy using **GX App**!\nPlease click the **⭐ Rate Service** button below to leave your rating and feedback.\nYour review will be showcased on our vouches channel and official website!",
+          "color": "#581c87",
+          "fields": [],
+          "image": null,
+          "footer": {
+            "text": "GX Quality Control • Customer Feedback"
+          },
+          "buttons": [
+            {
+              "emoji": "⭐",
+              "label": "Rate Service",
+              "style": 1
+            }
+          ],
+          "is_v2_container": true
+        }
+      ]
+    },
+    {
+      "id": "1548146904695574590",
+      "author_id": "1115792661790609451",
+      "author_name": "hekoxv",
+      "author_display_name": "Hamdi",
+      "author_avatar": "https://cdn.discordapp.com/avatars/1115792661790609451/1a1cd8d675ec936438a22a7e9070792a.png?size=1024",
+      "author_bot": false,
+      "author_role_color": "#7a00ff",
+      "timestamp": "2026-09-12T01:43:05.258000+00:00",
+      "content": "",
+      "attachments": [
+        {
+          "id": "1548146904439853138",
+          "filename": "image.png",
+          "url": "https://cdn.discordapp.com/attachments/1548146673677762671/1548146904439853138/image.png?ex=6aa5ffa9&is=6aa4ae29&hm=2e16856a0de96d6bc64ca6775b15e33316446fd35bfc3a1cde5cbb00e749aac2&",
+          "proxy_url": "https://media.discordapp.net/attachments/1548146673677762671/1548146904439853138/image.png?ex=6aa5ffa9&is=6aa4ae29&hm=2e16856a0de96d6bc64ca6775b15e33316446fd35bfc3a1cde5cbb00e749aac2&",
+          "size": 12763,
+          "is_image": true
+        }
+      ],
+      "embeds": []
+    },
+    {
+      "id": "1548146906772013098",
+      "author_id": "1115792661790609451",
+      "author_name": "hekoxv",
+      "author_display_name": "Hamdi",
+      "author_avatar": "https://cdn.discordapp.com/avatars/1115792661790609451/1a1cd8d675ec936438a22a7e9070792a.png?size=1024",
+      "author_bot": false,
+      "author_role_color": "#7a00ff",
+      "timestamp": "2026-09-12T01:43:05.753000+00:00",
+      "content": "ASDQWE",
+      "attachments": [],
+      "embeds": []
+    },
+    {
+      "id": "1548146913281445929",
+      "author_id": "1115792661790609451",
+      "author_name": "hekoxv",
+      "author_display_name": "Hamdi",
+      "author_avatar": "https://cdn.discordapp.com/avatars/1115792661790609451/1a1cd8d675ec936438a22a7e9070792a.png?size=1024",
+      "author_bot": false,
+      "author_role_color": "#7a00ff",
+      "timestamp": "2026-09-12T01:43:07.305000+00:00",
+      "content": "ASD",
+      "attachments": [],
+      "embeds": []
+    },
+    {
+      "id": "1548146921020067923",
+      "author_id": "1115792661790609451",
+      "author_name": "hekoxv",
+      "author_display_name": "Hamdi",
+      "author_avatar": "https://cdn.discordapp.com/avatars/1115792661790609451/1a1cd8d675ec936438a22a7e9070792a.png?size=1024",
+      "author_bot": false,
+      "author_role_color": "#7a00ff",
+      "timestamp": "2026-09-12T01:43:09.150000+00:00",
+      "content": "JDSJ",
+      "attachments": [],
+      "embeds": []
+    },
+    {
+      "id": "1548147420427190322",
+      "author_id": "1547632703040651354",
+      "author_name": "GX Bot",
+      "author_display_name": "GX Bot",
+      "author_avatar": "https://cdn.discordapp.com/avatars/1547632703040651354/1cad7f0784958f7f72fab68e01e8b428.png?size=1024",
+      "author_bot": true,
+      "author_role_color": "#c12aff",
+      "timestamp": "2026-09-12T01:45:08.218000+00:00",
+      "content": "",
+      "attachments": [],
+      "embeds": [
+        {
+          "title": null,
+          "description": "### 🙏 Thank You!\nThank you for rating your support experience ⭐⭐⭐⭐⭐! Closing channels now...",
+          "color": "#581c87",
+          "fields": [],
+          "image": null,
+          "footer": {
+            "text": "GX Ticket System"
+          },
+          "is_v2_container": true
+        }
+      ]
+    }
+  ]
+}

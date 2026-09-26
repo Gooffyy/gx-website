@@ -1,0 +1,964 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ticket Transcript — #🛒┃purchase-hekoxv</title>
+  <link rel="icon" type="image/png" href="https://raw.githubusercontent.com/discord/discord-api-docs/master/images/discord-logo.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Michroma&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg-chat: #313338;
+      --bg-header: #2b2d31;
+      --bg-sidebar: #1e1f22;
+      --bg-card: #2b2d31;
+      --bg-popover: #232428;
+      --bg-hover: rgba(255, 255, 255, 0.04);
+      --text-normal: #dbdee1;
+      --text-muted: #949ba4;
+      --text-header: #f2f3f5;
+      --brand: #5865F2;
+      --brand-glow: rgba(88, 101, 242, 0.3);
+      --gx-purple: #C12AFF;
+      --gx-dark-purple: #581C87;
+      --gx-green: #00FF88;
+      --gx-gold: #FFD700;
+      --border-subtle: rgba(255, 255, 255, 0.08);
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      background: var(--bg-chat);
+      color: var(--text-normal);
+      font-family: 'gg sans', 'Space Grotesk', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      font-size: 15px;
+      line-height: 1.45;
+      overflow-x: hidden;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+    a { color: #00a8fc; text-decoration: none; }
+    a:hover { text-decoration: underline; }
+
+    .discord-header {
+      background: var(--bg-header);
+      height: 56px;
+      border-bottom: 1px solid var(--border-subtle);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 20px;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.25);
+    }
+    .header-left {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .channel-icon {
+      color: #80848e;
+      font-size: 20px;
+      font-weight: bold;
+    }
+    .channel-name {
+      font-weight: 700;
+      color: var(--text-header);
+      font-size: 16px;
+    }
+    .header-badge {
+      font-size: 11px;
+      padding: 3px 8px;
+      border-radius: 4px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+    .badge-closed { background: rgba(237, 66, 69, 0.2); color: #f23f43; border: 1px solid rgba(237, 66, 69, 0.4); }
+    .badge-purchase { background: rgba(193, 42, 255, 0.2); color: var(--gx-purple); border: 1px solid rgba(193, 42, 255, 0.4); }
+    .badge-support { background: rgba(0, 255, 136, 0.2); color: var(--gx-green); border: 1px solid rgba(0, 255, 136, 0.4); }
+
+    .header-actions {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .action-btn {
+      background: rgba(255, 255, 255, 0.08);
+      border: 1px solid var(--border-subtle);
+      color: var(--text-header);
+      padding: 6px 12px;
+      border-radius: 4px;
+      font-size: 12px;
+      font-weight: 600;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      transition: all 0.2s;
+    }
+    .action-btn:hover {
+      background: var(--brand);
+      border-color: var(--brand);
+      color: #fff;
+    }
+
+    .transcript-container {
+      max-width: 1200px;
+      width: 100%;
+      margin: 0 auto;
+      padding: 24px 20px 60px;
+      flex: 1;
+    }
+
+    .meta-hero-card {
+      background: var(--bg-card);
+      border: 1px solid rgba(193, 42, 255, 0.35);
+      border-radius: 8px;
+      padding: 20px;
+      margin-bottom: 28px;
+      box-shadow: 0 4px 24px rgba(0, 0, 0, 0.35);
+      position: relative;
+      overflow: hidden;
+    }
+    .meta-hero-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 3px;
+      background: linear-gradient(90deg, var(--gx-dark-purple), var(--gx-purple), var(--gx-green));
+    }
+    .meta-hero-title {
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: #fff;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 14px;
+    }
+    .meta-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 14px;
+    }
+    .meta-item {
+      background: rgba(0, 0, 0, 0.25);
+      padding: 10px 14px;
+      border-radius: 6px;
+      border: 1px solid var(--border-subtle);
+    }
+    .meta-label {
+      font-size: 11px;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      font-weight: 700;
+      margin-bottom: 4px;
+      display: flex;
+      align-items: center;
+      gap: 5px;
+    }
+    .meta-value {
+      font-size: 13.5px;
+      color: #fff;
+      font-weight: 600;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .clickable-user {
+      cursor: pointer;
+      color: #fff;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 2px 6px;
+      border-radius: 4px;
+      background: rgba(255, 255, 255, 0.05);
+      transition: background 0.15s;
+    }
+    .clickable-user:hover {
+      background: rgba(193, 42, 255, 0.25);
+      color: var(--gx-purple);
+    }
+    .meta-avatar {
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
+      object-fit: cover;
+    }
+
+    .rating-banner {
+      margin-top: 14px;
+      background: rgba(255, 215, 0, 0.08);
+      border: 1px solid rgba(255, 215, 0, 0.35);
+      border-radius: 6px;
+      padding: 12px 16px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+    .rating-stars {
+      color: var(--gx-gold);
+      font-size: 18px;
+      letter-spacing: 2px;
+    }
+    .rating-comment {
+      color: #f4f4f5;
+      font-size: 13.5px;
+      font-style: italic;
+      flex: 1;
+      min-width: 220px;
+    }
+
+    .messages-list {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+    }
+    .message-group {
+      display: flex;
+      gap: 16px;
+      padding: 8px 16px;
+      border-radius: 4px;
+      transition: background 0.15s;
+      position: relative;
+    }
+    .message-group:hover {
+      background: var(--bg-hover);
+    }
+    .msg-avatar-wrap {
+      width: 40px;
+      height: 40px;
+      flex-shrink: 0;
+      cursor: pointer;
+    }
+    .msg-avatar {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      object-fit: cover;
+      transition: transform 0.15s;
+    }
+    .msg-avatar:hover {
+      transform: scale(1.06);
+    }
+    .msg-content-wrap {
+      flex: 1;
+      min-width: 0;
+    }
+    .msg-header {
+      display: flex;
+      align-items: baseline;
+      gap: 8px;
+      margin-bottom: 4px;
+    }
+    .msg-author {
+      font-weight: 600;
+      font-size: 15px;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .msg-author:hover {
+      text-decoration: underline;
+    }
+    .bot-tag {
+      background: var(--brand);
+      color: #fff;
+      font-size: 10px;
+      font-weight: 700;
+      padding: 1px 4px;
+      border-radius: 3px;
+      line-height: 1;
+      vertical-align: middle;
+    }
+    .msg-timestamp {
+      font-size: 11.5px;
+      color: var(--text-muted);
+      cursor: default;
+    }
+    .msg-text {
+      color: var(--text-normal);
+      word-wrap: break-word;
+      white-space: pre-wrap;
+      line-height: 1.4;
+    }
+    .msg-text code {
+      background: #1e1f22;
+      padding: 2px 4px;
+      border-radius: 3px;
+      font-family: Consolas, monospace;
+      font-size: 13px;
+    }
+    .msg-text pre {
+      background: #1e1f22;
+      padding: 10px 14px;
+      border-radius: 6px;
+      margin: 6px 0;
+      overflow-x: auto;
+      font-family: Consolas, monospace;
+      font-size: 13px;
+    }
+    .msg-mention {
+      background: rgba(88, 101, 242, 0.18);
+      color: #c9cdfb;
+      padding: 1px 5px;
+      border-radius: 3px;
+      font-weight: 600;
+      cursor: pointer;
+    }
+    .msg-mention:hover {
+      background: var(--brand);
+      color: #fff;
+    }
+
+    .discord-embed {
+      background: var(--bg-card);
+      border-left: 4px solid var(--gx-purple);
+      border-radius: 4px;
+      padding: 14px 16px;
+      margin-top: 8px;
+      max-width: 540px;
+      display: grid;
+      gap: 8px;
+    }
+    .embed-title {
+      font-size: 14.5px;
+      font-weight: 700;
+      color: #fff;
+    }
+    .embed-desc {
+      font-size: 13.5px;
+      color: var(--text-normal);
+      line-height: 1.4;
+      white-space: pre-wrap;
+    }
+    .embed-fields {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 8px;
+      margin-top: 4px;
+    }
+    .embed-field-name {
+      font-size: 12px;
+      font-weight: 700;
+      color: var(--text-header);
+      margin-bottom: 2px;
+    }
+    .embed-field-value {
+      font-size: 13px;
+      color: var(--text-normal);
+      white-space: pre-wrap;
+    }
+    .embed-image {
+      max-width: 100%;
+      border-radius: 4px;
+      margin-top: 6px;
+      cursor: pointer;
+    }
+    .embed-footer {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 11px;
+      color: var(--text-muted);
+      margin-top: 4px;
+    }
+
+    .msg-attachment {
+      margin-top: 8px;
+    }
+    .attachment-img {
+      max-width: 480px;
+      max-height: 380px;
+      border-radius: 6px;
+      cursor: pointer;
+      border: 1px solid var(--border-subtle);
+    }
+
+    .discord-v2-container {
+      background: var(--bg-card);
+      border-left: 4px solid var(--gx-purple);
+      border-radius: 6px;
+      padding: 14px 16px;
+      margin-top: 8px;
+      max-width: 580px;
+    }
+    .embed-action-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 10px;
+      padding-top: 8px;
+      border-top: 1px solid rgba(255, 255, 255, 0.08);
+    }
+    .embed-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 6px 12px;
+      border-radius: 4px;
+      font-size: 13px;
+      font-weight: 600;
+      user-select: none;
+    }
+    .embed-btn-1 { background: #5865f2; color: #fff; }
+    .embed-btn-2 { background: #4e5058; color: #dbdee1; }
+    .embed-btn-3 { background: #248046; color: #fff; }
+    .embed-btn-4 { background: #da373c; color: #fff; }
+    .embed-btn-emoji { font-size: 16px; }
+
+    .attachment-fallback-card {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      background: #2b2d31;
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 6px;
+      padding: 10px 14px;
+      max-width: 440px;
+      margin-top: 6px;
+    }
+    .fallback-icon { font-size: 24px; }
+    .fallback-info { flex: 1; min-width: 0; }
+    .fallback-name { font-weight: 600; font-size: 13.5px; color: #f2f3f5; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+    .fallback-meta { font-size: 11px; color: #949ba4; }
+    .fallback-btn {
+      padding: 4px 10px;
+      background: rgba(255, 255, 255, 0.08);
+      border-radius: 4px;
+      font-size: 11.5px;
+      color: #dbdee1;
+      text-decoration: none;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      transition: background 0.15s;
+    }
+    .fallback-btn:hover { background: #5865f2; color: #fff; text-decoration: none; }
+
+    .profile-modal-overlay {
+      display: none;
+      position: fixed;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: rgba(0, 0, 0, 0.65);
+      backdrop-filter: blur(4px);
+      z-index: 999;
+      align-items: center;
+      justify-content: center;
+    }
+    .profile-modal-overlay.active {
+      display: flex;
+    }
+    .discord-profile-card {
+      background: var(--bg-popover);
+      width: 340px;
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 16px 40px rgba(0, 0, 0, 0.6), 0 0 20px rgba(193, 42, 255, 0.2);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      animation: popIn 0.18s cubic-bezier(0.18, 0.89, 0.32, 1.28);
+      position: relative;
+    }
+    @keyframes popIn {
+      from { transform: scale(0.92); opacity: 0; }
+      to { transform: scale(1); opacity: 1; }
+    }
+    .profile-banner {
+      height: 105px;
+      background: linear-gradient(135deg, var(--gx-dark-purple), var(--gx-purple));
+      position: relative;
+    }
+    .profile-close-btn {
+      position: absolute;
+      top: 10px;
+      right: 12px;
+      width: 28px;
+      height: 28px;
+      background: rgba(0, 0, 0, 0.4);
+      border: none;
+      border-radius: 50%;
+      color: #fff;
+      font-size: 14px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: background 0.15s;
+    }
+    .profile-close-btn:hover {
+      background: rgba(0, 0, 0, 0.8);
+    }
+    .profile-avatar-container {
+      position: absolute;
+      bottom: -36px;
+      left: 18px;
+    }
+    .profile-avatar-img {
+      width: 80px;
+      height: 80px;
+      border-radius: 50%;
+      border: 6px solid var(--bg-popover);
+      background: var(--bg-popover);
+      object-fit: cover;
+    }
+    .profile-body {
+      padding: 44px 18px 20px;
+    }
+    .profile-names {
+      margin-bottom: 12px;
+    }
+    .profile-display-name {
+      font-size: 20px;
+      font-weight: 700;
+      color: #fff;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .profile-username {
+      font-size: 14px;
+      color: var(--text-muted);
+    }
+    .profile-divider {
+      height: 1px;
+      background: rgba(255, 255, 255, 0.1);
+      margin: 14px 0;
+    }
+    .profile-section-title {
+      font-size: 11px;
+      font-weight: 700;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      margin-bottom: 8px;
+    }
+    .profile-roles {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-bottom: 16px;
+    }
+    .role-pill {
+      background: #2b2d31;
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 4px;
+      padding: 4px 8px;
+      font-size: 12px;
+      color: #dbdee1;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .role-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      flex-shrink: 0;
+    }
+    .profile-member-since {
+      font-size: 12.5px;
+      color: #dbdee1;
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+    .profile-user-id {
+      margin-top: 14px;
+      padding-top: 12px;
+      border-top: 1px solid rgba(255, 255, 255, 0.08);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      font-size: 11.5px;
+      color: var(--text-muted);
+      font-family: Consolas, monospace;
+    }
+    .copy-id-btn {
+      background: rgba(255, 255, 255, 0.06);
+      border: 1px solid var(--border-subtle);
+      color: #fff;
+      padding: 3px 8px;
+      border-radius: 4px;
+      cursor: pointer;
+      font-size: 11px;
+    }
+    .copy-id-btn:hover {
+      background: var(--brand);
+    }
+  </style>
+</head>
+<body>
+
+  <header class="discord-header">
+    <div class="header-left">
+      <span class="channel-icon">#</span>
+      <span class="channel-name">🛒┃purchase-hekoxv</span>
+      <span class="header-badge badge-closed">CLOSED</span>
+      <span class="header-badge badge-purchase">PURCHASE</span>
+    </div>
+    <div class="header-actions">
+      <button type="button" class="action-btn" onclick="downloadJSON()">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M7 10l5 5 5-5M12 15V3"/></svg>
+        JSON
+      </button>
+      <button type="button" class="action-btn" onclick="window.print()">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 6 2 18 2 18 9"/><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/><rect x="6" y="14" width="12" height="8"/></svg>
+        Print
+      </button>
+    </div>
+  </header>
+
+  <main class="transcript-container">
+
+    <section class="meta-hero-card">
+      <div class="meta-hero-title">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="color: var(--gx-purple);"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
+        <span>Ticket Archive — #🛒┃purchase-hekoxv</span>
+      </div>
+
+      <div class="meta-grid">
+        <div class="meta-item">
+          <div class="meta-label">👤 CUSTOMER</div>
+          <div class="meta-value">
+            <span class="clickable-user" onclick="showUserProfile('1115792661790609451')">
+              <img class="meta-avatar" src="https://cdn.discordapp.com/avatars/1115792661790609451/1a1cd8d675ec936438a22a7e9070792a.png?size=1024" alt="avatar" />
+              <span>Hamdi</span>
+            </span>
+          </div>
+        </div>
+
+        <div class="meta-item">
+          <div class="meta-label">🤝 CLAIMED BY</div>
+          <div class="meta-value">
+            <span style="color: #ed4245;">❌ Unclaimed</span>
+          </div>
+        </div>
+
+        <div class="meta-item">
+          <div class="meta-label">🔒 CLOSED BY</div>
+          <div class="meta-value">
+            <span class="clickable-user" onclick="showUserProfile('1115792661790609451')">
+              <img class="meta-avatar" src="https://cdn.discordapp.com/avatars/1115792661790609451/1a1cd8d675ec936438a22a7e9070792a.png?size=1024" alt="avatar" />
+              <span>Hamdi</span>
+            </span>
+          </div>
+        </div>
+
+        <div class="meta-item">
+          <div class="meta-label">📦 LICENSE PLAN</div>
+          <div class="meta-value" style="color: var(--gx-purple);">
+            Monthly License ($6.99 / 350 EGP)
+          </div>
+        </div>
+
+        <div class="meta-item">
+          <div class="meta-label">💳 PAYMENT METHOD</div>
+          <div class="meta-value">
+            TapTap Send
+          </div>
+        </div>
+
+        <div class="meta-item">
+          <div class="meta-label">⏱️ TOTAL MESSAGES</div>
+          <div class="meta-value">
+            8 Messages
+          </div>
+        </div>
+      </div>
+
+      
+        <div class="rating-banner">
+          <div>
+            <span style="font-size: 11px; text-transform: uppercase; font-weight: 700; color: var(--gx-gold); display: block; margin-bottom: 2px;">⭐ CUSTOMER REVIEW</span>
+            <div class="rating-stars">⭐⭐⭐⭐⭐</div>
+          </div>
+          <div class="rating-comment">
+            "TEST"
+          </div>
+        </div>
+        
+    </section>
+
+    <div id="messages-list" class="messages-list">
+      <!-- Injected via JavaScript -->
+    </div>
+
+  </main>
+
+  <div id="profile-modal" class="profile-modal-overlay" onclick="closeProfileModal(event)">
+    <div class="discord-profile-card" onclick="event.stopPropagation()">
+      <div id="modal-banner" class="profile-banner">
+        <button type="button" class="profile-close-btn" onclick="closeProfileModal()" title="Close">&times;</button>
+        <div class="profile-avatar-container">
+          <img id="modal-avatar" class="profile-avatar-img" src="" alt="avatar" />
+        </div>
+      </div>
+      <div class="profile-body">
+        <div class="profile-names">
+          <div class="profile-display-name">
+            <span id="modal-display-name">User</span>
+            <span id="modal-bot-badge" class="bot-tag" style="display: none;">BOT</span>
+          </div>
+          <div id="modal-username" class="profile-username">@username</div>
+        </div>
+        <div class="profile-divider"></div>
+
+        <div class="profile-section-title">ROLES</div>
+        <div id="modal-roles" class="profile-roles"></div>
+
+        <div class="profile-section-title">MEMBER SINCE</div>
+        <div id="modal-member-since" class="profile-member-since"></div>
+
+        <div class="profile-user-id">
+          <span>USER ID: <span id="modal-user-id">0</span></span>
+          <button type="button" class="copy-id-btn" onclick="copyUserId()">Copy ID</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const TRANSCRIPT_DATA = {"id": "purchase_1789177329_1115792661790609451", "channel_id": "1548146673677762671", "channel_name": "🛒┃purchase-hekoxv", "ticket_type": "purchase", "created_at": "2026-09-12T01:42:09.699780+00:00", "closed_at": "2026-09-12T01:45:10.767088+00:00", "creator": {"id": "1115792661790609451", "name": "hekoxv", "display_name": "Hamdi", "avatar": "https://cdn.discordapp.com/avatars/1115792661790609451/1a1cd8d675ec936438a22a7e9070792a.png?size=1024", "bot": false, "top_role_color": "#7a00ff", "roles": [{"id": "1547640722013036637", "name": "👑 Owner", "color": "#7a00ff", "position": 6}, {"id": "1547640723199885464", "name": "🛡️ Moderator", "color": "#c042ff", "position": 5}, {"id": "1547640724604850186", "name": "⭐ Key Holder", "color": "#480085", "position": 4}, {"id": "1547640725687111872", "name": "👤 Member", "color": "#2d0059", "position": 3}, {"id": "1547650135281111050", "name": "👑 Admin", "color": "#a100ff", "position": 2}, {"id": "1547691755854635108", "name": "🤝 Friends", "color": "#e070ff", "position": 1}], "joined_at": "2026-09-10T16:34:35.794000+00:00", "created_at": "2023-06-07T00:01:40.996000+00:00"}, "claimed_by": null, "closed_by": {"id": "1115792661790609451", "name": "hekoxv", "display_name": "Hamdi", "avatar": "https://cdn.discordapp.com/avatars/1115792661790609451/1a1cd8d675ec936438a22a7e9070792a.png?size=1024", "bot": false, "top_role_color": "#7a00ff", "roles": [{"id": "1547640722013036637", "name": "👑 Owner", "color": "#7a00ff", "position": 6}, {"id": "1547640723199885464", "name": "🛡️ Moderator", "color": "#c042ff", "position": 5}, {"id": "1547640724604850186", "name": "⭐ Key Holder", "color": "#480085", "position": 4}, {"id": "1547640725687111872", "name": "👤 Member", "color": "#2d0059", "position": 3}, {"id": "1547650135281111050", "name": "👑 Admin", "color": "#a100ff", "position": 2}, {"id": "1547691755854635108", "name": "🤝 Friends", "color": "#e070ff", "position": 1}], "joined_at": "2026-09-10T16:34:35.794000+00:00", "created_at": "2023-06-07T00:01:40.996000+00:00", "reason": "Closed by hekoxv"}, "close_reason": "Closed by hekoxv", "purchase_details": {"plan": "Monthly License ($6.99 / 350 EGP)", "payment_method": "TapTap Send", "notes": "TEST"}, "support_details": {"category": "General Inquiry", "issue": "TEST"}, "rating": {"score": 5, "stars": "⭐⭐⭐⭐⭐", "comment": "TEST", "submitted_at": "2026-09-12T01:42:51.963764+00:00"}, "participants": {"1115792661790609451": {"id": "1115792661790609451", "name": "hekoxv", "display_name": "Hamdi", "avatar": "https://cdn.discordapp.com/avatars/1115792661790609451/1a1cd8d675ec936438a22a7e9070792a.png?size=1024", "bot": false, "top_role_color": "#7a00ff", "roles": [{"id": "1547640722013036637", "name": "👑 Owner", "color": "#7a00ff", "position": 6}, {"id": "1547640723199885464", "name": "🛡️ Moderator", "color": "#c042ff", "position": 5}, {"id": "1547640724604850186", "name": "⭐ Key Holder", "color": "#480085", "position": 4}, {"id": "1547640725687111872", "name": "👤 Member", "color": "#2d0059", "position": 3}, {"id": "1547650135281111050", "name": "👑 Admin", "color": "#a100ff", "position": 2}, {"id": "1547691755854635108", "name": "🤝 Friends", "color": "#e070ff", "position": 1}], "joined_at": "2026-09-10T16:34:35.794000+00:00", "created_at": "2023-06-07T00:01:40.996000+00:00", "reason": "Closed by hekoxv"}, "1547632703040651354": {"id": "1547632703040651354", "name": "GX Bot", "display_name": "GX Bot", "avatar": "https://cdn.discordapp.com/avatars/1547632703040651354/1cad7f0784958f7f72fab68e01e8b428.png?size=1024", "bot": true, "top_role_color": "#c12aff", "roles": [{"id": "1547636911009701928", "name": "GX Bot", "color": "#c12aff", "position": 7}], "joined_at": "2026-09-10T15:56:33.329516+00:00", "created_at": "2026-09-10T15:39:50.030000+00:00"}}, "messages": [{"id": "1548146685463498883", "author_id": "1547632703040651354", "author_name": "GX Bot", "author_display_name": "GX Bot", "author_avatar": "https://cdn.discordapp.com/avatars/1547632703040651354/1cad7f0784958f7f72fab68e01e8b428.png?size=1024", "author_bot": true, "author_role_color": "#c12aff", "timestamp": "2026-09-12T01:42:12.989000+00:00", "content": "", "attachments": [], "embeds": [{"title": null, "description": "<@1115792661790609451> | Sales Staff Notification: <@&1547640722013036637>\n\n### 🛒 GX Key Purchase Ticket — Hamdi\n\nWelcome <@1115792661790609451>!\nOur sales team has been notified of your purchase request. A staff member will issue your key shortly!\n\n📋 **Selected License Plan**: Monthly License (.99 / 350 EGP)\n💳 **Preferred Payment Method**: TapTap Send\n📝 **Additional Order Notes**: TEST", "color": "#581c87", "fields": [], "image": {"url": "/images/PRE IN.png"}, "footer": {"text": "🤝 Staff Claim • 🛠️ Mod Menu • 🔒 Close Ticket"}, "buttons": [{"emoji": "🤝", "label": "", "style": 2}, {"emoji": "🛠️", "label": "", "style": 2}, {"emoji": "🔒", "label": "", "style": 2}], "is_v2_container": true}]}, {"id": "1548146820700442735", "author_id": "1547632703040651354", "author_name": "GX Bot", "author_display_name": "GX Bot", "author_avatar": "https://cdn.discordapp.com/avatars/1547632703040651354/1cad7f0784958f7f72fab68e01e8b428.png?size=1024", "author_bot": true, "author_role_color": "#c12aff", "timestamp": "2026-09-12T01:42:45.232000+00:00", "content": "", "attachments": [], "embeds": [{"title": null, "description": "### 🤝 Ticket Claimed by Hamdi\n\nThis ticket has been officially claimed by <@1115792661790609451>!\nThey are now handling this order and will provide your key shortly.", "color": "#581c87", "fields": [], "image": null, "footer": {"text": "GX Order Management • Staff Claim"}, "is_v2_container": true}]}, {"id": "1548146854070329395", "author_id": "1547632703040651354", "author_name": "GX Bot", "author_display_name": "GX Bot", "author_avatar": "https://cdn.discordapp.com/avatars/1547632703040651354/1cad7f0784958f7f72fab68e01e8b428.png?size=1024", "author_bot": true, "author_role_color": "#c12aff", "timestamp": "2026-09-12T01:42:53.188000+00:00", "content": "", "attachments": [], "embeds": [{"title": null, "description": "### 🎉 Order Completed!\n\nHey <@1115792661790609451>, your purchase has been completed by <@1115792661790609451>!\n\nWe hope you enjoy using **GX App**!\nPlease click the **⭐ Rate Service** button below to leave your rating and feedback.\nYour review will be showcased on our vouches channel and official website!", "color": "#581c87", "fields": [], "image": null, "footer": {"text": "GX Quality Control • Customer Feedback"}, "buttons": [{"emoji": "⭐", "label": "Rate Service", "style": 1}], "is_v2_container": true}]}, {"id": "1548146904695574590", "author_id": "1115792661790609451", "author_name": "hekoxv", "author_display_name": "Hamdi", "author_avatar": "https://cdn.discordapp.com/avatars/1115792661790609451/1a1cd8d675ec936438a22a7e9070792a.png?size=1024", "author_bot": false, "author_role_color": "#7a00ff", "timestamp": "2026-09-12T01:43:05.258000+00:00", "content": "", "attachments": [{"id": "1548146904439853138", "filename": "image.png", "url": "https://cdn.discordapp.com/attachments/1548146673677762671/1548146904439853138/image.png?ex=6aa5ffa9&is=6aa4ae29&hm=2e16856a0de96d6bc64ca6775b15e33316446fd35bfc3a1cde5cbb00e749aac2&", "proxy_url": "https://media.discordapp.net/attachments/1548146673677762671/1548146904439853138/image.png?ex=6aa5ffa9&is=6aa4ae29&hm=2e16856a0de96d6bc64ca6775b15e33316446fd35bfc3a1cde5cbb00e749aac2&", "size": 12763, "is_image": true}], "embeds": []}, {"id": "1548146906772013098", "author_id": "1115792661790609451", "author_name": "hekoxv", "author_display_name": "Hamdi", "author_avatar": "https://cdn.discordapp.com/avatars/1115792661790609451/1a1cd8d675ec936438a22a7e9070792a.png?size=1024", "author_bot": false, "author_role_color": "#7a00ff", "timestamp": "2026-09-12T01:43:05.753000+00:00", "content": "ASDQWE", "attachments": [], "embeds": []}, {"id": "1548146913281445929", "author_id": "1115792661790609451", "author_name": "hekoxv", "author_display_name": "Hamdi", "author_avatar": "https://cdn.discordapp.com/avatars/1115792661790609451/1a1cd8d675ec936438a22a7e9070792a.png?size=1024", "author_bot": false, "author_role_color": "#7a00ff", "timestamp": "2026-09-12T01:43:07.305000+00:00", "content": "ASD", "attachments": [], "embeds": []}, {"id": "1548146921020067923", "author_id": "1115792661790609451", "author_name": "hekoxv", "author_display_name": "Hamdi", "author_avatar": "https://cdn.discordapp.com/avatars/1115792661790609451/1a1cd8d675ec936438a22a7e9070792a.png?size=1024", "author_bot": false, "author_role_color": "#7a00ff", "timestamp": "2026-09-12T01:43:09.150000+00:00", "content": "JDSJ", "attachments": [], "embeds": []}, {"id": "1548147420427190322", "author_id": "1547632703040651354", "author_name": "GX Bot", "author_display_name": "GX Bot", "author_avatar": "https://cdn.discordapp.com/avatars/1547632703040651354/1cad7f0784958f7f72fab68e01e8b428.png?size=1024", "author_bot": true, "author_role_color": "#c12aff", "timestamp": "2026-09-12T01:45:08.218000+00:00", "content": "", "attachments": [], "embeds": [{"title": null, "description": "### 🙏 Thank You!\nThank you for rating your support experience ⭐⭐⭐⭐⭐! Closing channels now...", "color": "#581c87", "fields": [], "image": null, "footer": {"text": "GX Ticket System"}, "is_v2_container": true}]}]};
+
+    function escapeHtml(str) {
+      if (!str) return '';
+      return String(str)
+        .replace(/&/g, '&amp;')
+        .replace(/</g, '&lt;')
+        .replace(/>/g, '&gt;')
+        .replace(/"/g, '&quot;')
+        .replace(/'/g, '&#039;');
+    }
+
+    function formatTime(isoStr) {
+      if (!isoStr) return '';
+      try {
+        const d = new Date(isoStr);
+        return d.toLocaleDateString('en-US', { month: 'numeric', day: 'numeric', year: 'numeric' }) +
+               ' ' + d.toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit' });
+      } catch (e) {
+        return isoStr;
+      }
+    }
+
+    function formatDateShort(isoStr) {
+      if (!isoStr) return 'N/A';
+      try {
+        const d = new Date(isoStr);
+        return d.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' });
+      } catch (e) {
+        return isoStr;
+      }
+    }
+
+    function parseDiscordMarkdown(content) {
+      if (!content) return '';
+      let text = escapeHtml(content);
+
+      text = text.replace(/```([a-z]*)\n([\s\S]*?)```/g, '<pre><code>$2</code></pre>');
+      text = text.replace(/`([^`]+)`/g, '<code>$1</code>');
+      text = text.replace(/\*\*([^\*]+)\*\*/g, '<strong>$1</strong>');
+      text = text.replace(/\*([^\*]+)\*/g, '<em>$1</em>');
+      text = text.replace(/~~([^~]+)~~/g, '<del>$1</del>');
+      text = text.replace(/^> (.*)$/gm, '<blockquote style="border-left: 3px solid #4e5058; padding-left: 8px; margin: 4px 0; color: #dbdee1;">$1</blockquote>');
+
+      text = text.replace(/&lt;@!?([0-9]+)&gt;/g, (match, uid) => {
+        const p = TRANSCRIPT_DATA.participants ? TRANSCRIPT_DATA.participants[uid] : null;
+        const name = p ? ('@' + (p.display_name || p.name)) : ('@User');
+        return `<span class="msg-mention" onclick="showUserProfile('${uid}')">${escapeHtml(name)}</span>`;
+      });
+
+      text = text.replace(/&lt;@&amp;([0-9]+)&gt;/g, '<span class="msg-mention">@Role</span>');
+      text = text.replace(/&lt;#([0-9]+)&gt;/g, '<span class="msg-mention">#channel</span>');
+
+      return text;
+    }
+
+    function renderMessages() {
+      const container = document.getElementById('messages-list');
+      if (!container) return;
+
+      const msgs = TRANSCRIPT_DATA.messages || [];
+      if (!msgs.length) {
+        container.innerHTML = '<div style="text-align: center; color: var(--text-muted); padding: 40px;">No messages in this ticket.</div>';
+        return;
+      }
+
+      let htmlOut = '';
+      msgs.forEach(m => {
+        const roleColor = m.author_role_color || '#c12aff';
+        const formattedTime = formatTime(m.timestamp);
+
+        let attHtml = '';
+        if (m.attachments && m.attachments.length) {
+          m.attachments.forEach(att => {
+            const imgSrc = att.data_uri || att.url;
+            if (att.is_image) {
+              attHtml += `<div class="msg-attachment"><img class="attachment-img" src="${imgSrc}" alt="${escapeHtml(att.filename)}" onclick="window.open('${imgSrc}', '_blank')" onerror="handleAttachmentImgError(this, '${escapeHtml(att.filename)}', '${escapeHtml(att.url)}')" /></div>`;
+            } else {
+              attHtml += `<div class="msg-attachment"><a href="${att.url}" target="_blank" class="action-btn">📎 ${escapeHtml(att.filename)}</a></div>`;
+            }
+          });
+        }
+
+        let embedHtml = '';
+        if (m.embeds && m.embeds.length) {
+          m.embeds.forEach(emb => {
+            let fieldsHtml = '';
+            if (emb.fields && emb.fields.length) {
+              fieldsHtml = '<div class="embed-fields">' + emb.fields.map(f => `
+                <div class="embed-field">
+                  <div class="embed-field-name">${escapeHtml(f.name)}</div>
+                  <div class="embed-field-value">${parseDiscordMarkdown(f.value)}</div>
+                </div>
+              `).join('') + '</div>';
+            }
+
+            let embImage = '';
+            if (emb.image && emb.image.url) {
+              let imgUrl = emb.image.url.replace('attachment://PRE_IN.png', '/images/PRE IN.png').replace('attachment://PRE.png', '/images/PRE.png');
+              embImage = `<img class="embed-image" src="${imgUrl}" onclick="window.open('${imgUrl}', '_blank')" onerror="this.style.display='none'" />`;
+            }
+
+            let buttonsHtml = '';
+            if (emb.buttons && emb.buttons.length) {
+              buttonsHtml = '<div class="embed-action-row">' + emb.buttons.map(b => `
+                <span class="embed-btn embed-btn-${b.style || 2}">
+                  ${b.emoji ? `<span class="embed-btn-emoji">${escapeHtml(b.emoji)}</span>` : ''}
+                  ${b.label ? `<span>${escapeHtml(b.label)}</span>` : ''}
+                </span>
+              `).join('') + '</div>';
+            }
+
+            embedHtml += `
+              <div class="discord-embed ${emb.is_v2_container ? 'discord-v2-container' : ''}" style="border-left-color: ${emb.color || 'var(--gx-purple)'};">
+                ${emb.title ? `<div class="embed-title">${escapeHtml(emb.title)}</div>` : ''}
+                ${emb.description ? `<div class="embed-desc">${parseDiscordMarkdown(emb.description)}</div>` : ''}
+                ${embImage}
+                ${fieldsHtml}
+                ${buttonsHtml}
+                ${emb.footer && emb.footer.text ? `<div class="embed-footer">${escapeHtml(emb.footer.text)}</div>` : ''}
+              </div>
+            `;
+          });
+        }
+
+        htmlOut += `
+          <div class="message-group">
+            <div class="msg-avatar-wrap" onclick="showUserProfile('${m.author_id}')">
+              <img class="msg-avatar" src="${m.author_avatar}" alt="${escapeHtml(m.author_name)}" onerror="this.src='https://cdn.discordapp.com/embed/avatars/0.png'" />
+            </div>
+            <div class="msg-content-wrap">
+              <div class="msg-header">
+                <span class="msg-author" style="color: ${roleColor};" onclick="showUserProfile('${m.author_id}')">
+                  ${escapeHtml(m.author_display_name || m.author_name)}
+                </span>
+                ${m.author_bot ? '<span class="bot-tag">BOT</span>' : ''}
+                <span class="msg-timestamp">${formattedTime}</span>
+              </div>
+              ${m.content ? `<div class="msg-text">${parseDiscordMarkdown(m.content)}</div>` : ''}
+              ${attHtml}
+              ${embedHtml}
+            </div>
+          </div>
+        `;
+      });
+
+      container.innerHTML = htmlOut;
+    }
+
+    function handleAttachmentImgError(imgEl, filename, originalUrl) {
+      const wrap = imgEl.parentElement;
+      if (!wrap) return;
+      wrap.innerHTML = `
+        <div class="attachment-fallback-card">
+          <div class="fallback-icon">🖼️</div>
+          <div class="fallback-info">
+            <div class="fallback-name">${escapeHtml(filename)}</div>
+            <div class="fallback-meta">Attachment archived • (Discord CDN session expired)</div>
+          </div>
+          <a href="${escapeHtml(originalUrl)}" target="_blank" class="fallback-btn">Open Link ↗</a>
+        </div>
+      `;
+    }
+
+    function showUserProfile(userId) {
+      const p = (TRANSCRIPT_DATA.participants && TRANSCRIPT_DATA.participants[userId]) || null;
+      if (!p) return;
+
+      const modal = document.getElementById('profile-modal');
+      const banner = document.getElementById('modal-banner');
+      const avatar = document.getElementById('modal-avatar');
+      const displayName = document.getElementById('modal-display-name');
+      const username = document.getElementById('modal-username');
+      const botBadge = document.getElementById('modal-bot-badge');
+      const rolesContainer = document.getElementById('modal-roles');
+      const memberSince = document.getElementById('modal-member-since');
+      const userIdEl = document.getElementById('modal-user-id');
+
+      const topColor = p.top_role_color || '#581C87';
+      banner.style.background = `linear-gradient(135deg, ${topColor}, #1e1f22)`;
+
+      avatar.src = p.avatar || 'https://cdn.discordapp.com/embed/avatars/0.png';
+      displayName.textContent = p.display_name || p.name || 'User';
+      username.textContent = '@' + (p.name || 'user');
+      botBadge.style.display = p.bot ? 'inline-block' : 'none';
+      userIdEl.textContent = p.id;
+
+      if (p.roles && p.roles.length) {
+        rolesContainer.innerHTML = p.roles.map(r => `
+          <div class="role-pill">
+            <span class="role-dot" style="background: ${r.color || '#c12aff'};"></span>
+            <span>${escapeHtml(r.name)}</span>
+          </div>
+        `).join('');
+      } else {
+        rolesContainer.innerHTML = '<span style="font-size: 12px; color: var(--text-muted);">No server roles</span>';
+      }
+
+      const discordJoined = formatDateShort(p.created_at);
+      const serverJoined = formatDateShort(p.joined_at);
+      memberSince.innerHTML = `
+        <div><span style="color: var(--text-muted);">Discord:</span> <strong>${discordJoined}</strong></div>
+        <div><span style="color: var(--text-muted);">GX Server:</span> <strong>${serverJoined}</strong></div>
+      `;
+
+      modal.classList.add('active');
+    }
+
+    function closeProfileModal(event) {
+      if (event && event.target !== event.currentTarget) return;
+      document.getElementById('profile-modal').classList.remove('active');
+    }
+
+    function copyUserId() {
+      const uid = document.getElementById('modal-user-id').textContent;
+      navigator.clipboard.writeText(uid).then(() => {
+        const btn = document.querySelector('.copy-id-btn');
+        btn.textContent = 'Copied!';
+        setTimeout(() => btn.textContent = 'Copy ID', 1500);
+      });
+    }
+
+    function downloadJSON() {
+      const dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(TRANSCRIPT_DATA, null, 2));
+      const a = document.createElement('a');
+      a.setAttribute("href", dataStr);
+      a.setAttribute("download", `transcript_${TRANSCRIPT_DATA.id || 'ticket'}.json`);
+      document.body.appendChild(a);
+      a.click();
+      a.remove();
+    }
+
+    renderMessages();
+  </script>
+</body>
+</html>

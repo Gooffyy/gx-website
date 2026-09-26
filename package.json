@@ -1,0 +1,19 @@
+{
+  "name": "gx-menu-website",
+  "version": "4.8.2",
+  "description": "GX MENU Premium FiveM Cheat Official Website, Discord Bot & Client Portal",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "server": "node server/server.js",
+    "bot": "node bot/bot.js",
+    "dev": "node server/server.js"
+  },
+  "dependencies": {
+    "cookie-parser": "^1.4.6",
+    "discord.js": "^14.15.3",
+    "dotenv": "^16.4.5",
+    "express": "^4.19.2",
+    "multer": "^2.4.0"
+  }
+}

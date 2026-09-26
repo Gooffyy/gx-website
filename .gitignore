@@ -1,0 +1,26 @@
+# Environment variables (Never upload to public repositories!)
+.env
+
+# Dependencies (Installed automatically by Railway)
+node_modules/
+npm-debug.log
+yarn-error.log
+
+# Large Archives and Binaries
+*.zip
+*.rar
+*.7z
+*.tar.gz
+*.iobj
+*.ipdb
+*.pdb
+
+# Local Python Virtual Environments
+Discord Bot GX/venv/
+Discord Bot GX/.venv/
+__pycache__/
+*.pyc
+
+# Local C++ Menu build artifacts
+GX Menu/
+scratch/

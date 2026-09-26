@@ -1,0 +1,949 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>GX Menu — Refined ImGui 1.90 Overlay</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap');
+
+  * {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    user-select: none;
+  }
+
+  body {
+    background-color: #030106;
+    background-image: radial-gradient(circle at 50% 30%, #150625 0%, #030106 70%);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    font-family: 'Poppins', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    color: #f5f5f7;
+    overflow: hidden;
+  }
+
+  /* 972 x 588 Main Window */
+  .gx-window {
+    position: relative;
+    width: 972px;
+    height: 588px;
+    background: #08020e;
+    clip-path: polygon(
+      8px 0%, calc(100% - 8px) 0%,
+      100% 8px, 100% calc(100% - 8px),
+      calc(100% - 8px) 100%, 8px 100%,
+      0% calc(100% - 8px), 0% 8px
+    );
+    box-shadow: 0 0 35px rgba(161, 0, 255, 0.25), inset 0 0 1px rgba(198, 60, 255, 0.4);
+    border: 1px solid rgba(135, 25, 210, 0.7);
+    display: flex;
+  }
+
+  /* Background Crystalline Mountain Backdrop */
+  .mountain-backdrop {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    width: 574px;
+    height: 253px;
+    background: url('scratch/clean_backdrop.png') no-repeat right bottom;
+    background-size: contain;
+    opacity: 0.85;
+    pointer-events: none;
+    z-index: 1;
+  }
+
+  /* Star constellation lines */
+  .constellation-svg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 1;
+  }
+
+  /* Left Sidebar Container (160px width) */
+  .sidebar {
+    position: absolute;
+    left: 18px;
+    top: 18px;
+    width: 160px;
+    height: 502px;
+    background: rgba(10, 5, 16, 0.95);
+    border: 1px solid rgba(161, 0, 255, 0.7);
+    clip-path: polygon(
+      8px 0%, calc(100% - 8px) 0%,
+      100% 8px, 100% calc(100% - 8px),
+      calc(100% - 8px) 100%, 8px 100%,
+      0% calc(100% - 8px), 0% 8px
+    );
+    box-shadow: 0 0 15px rgba(161, 0, 255, 0.15);
+    z-index: 2;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .sidebar::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 8px;
+    width: 32px;
+    height: 2px;
+    background: #e664ff;
+    box-shadow: 0 0 8px #e664ff;
+  }
+
+  /* Sidebar Header */
+  .sidebar-header {
+    display: flex;
+    align-items: center;
+    padding: 12px 10px 10px 10px;
+    gap: 10px;
+  }
+
+  .logo-emblem {
+    width: 36px;
+    height: 36px;
+    object-fit: contain;
+    filter: drop-shadow(0 0 8px rgba(198, 60, 255, 0.6));
+  }
+
+  .sidebar-titles {
+    display: flex;
+    flex-direction: column;
+  }
+  .sidebar-titles .title-gx {
+    font-weight: 700;
+    font-size: 17px;
+    line-height: 18px;
+    color: #fff;
+    letter-spacing: 0.5px;
+  }
+  .sidebar-titles .title-sub {
+    font-weight: 600;
+    font-size: 10.5px;
+    color: #c63cff;
+    letter-spacing: 1px;
+  }
+
+  /* Category headers */
+  .category-header {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    padding: 6px 12px 4px 12px;
+    font-size: 10.5px;
+    font-weight: 600;
+    color: #d946ef;
+    letter-spacing: 0.8px;
+  }
+
+  .cat-icon {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    border: 1.2px solid #d946ef;
+    position: relative;
+  }
+
+  /* Tab items */
+  .tab-list {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    padding: 0 7px;
+  }
+
+  .tab-btn {
+    width: 146px;
+    height: 28px;
+    border-radius: 4px;
+    background: rgba(16, 8, 26, 0.7);
+    border: 1px solid rgba(60, 25, 95, 0.6);
+    color: #aaa0be;
+    font-size: 11px;
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+    padding: 0 12px;
+    gap: 8px;
+    cursor: pointer;
+    transition: all 0.15s ease;
+  }
+
+  .tab-btn:hover {
+    background: rgba(35, 15, 55, 0.9);
+    color: #fff;
+    border-color: rgba(161, 0, 255, 0.5);
+  }
+
+  .tab-btn.active {
+    background: linear-gradient(90deg, #300c4b 0%, #58108c 100%);
+    border-color: #c63cff;
+    box-shadow: 0 0 10px rgba(198, 60, 255, 0.35);
+    color: #fff;
+    font-weight: 600;
+  }
+
+  /* User Info Card (18px, H - 62px) */
+  .user-card {
+    position: absolute;
+    left: 18px;
+    bottom: 18px;
+    width: 160px;
+    height: 44px;
+    background: rgba(12, 6, 18, 0.95);
+    border: 1px solid rgba(161, 0, 255, 0.7);
+    clip-path: polygon(
+      6px 0%, calc(100% - 6px) 0%,
+      100% 6px, 100% calc(100% - 6px),
+      calc(100% - 6px) 100%, 6px 100%,
+      0% calc(100% - 6px), 0% 6px
+    );
+    box-shadow: 0 0 10px rgba(161, 0, 255, 0.2);
+    display: flex;
+    align-items: center;
+    padding: 0 10px;
+    gap: 8px;
+    z-index: 2;
+  }
+
+  .crown-icon {
+    font-size: 14px;
+    color: #d946ef;
+  }
+
+  .user-details {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+  }
+  .user-name {
+    font-size: 12px;
+    font-weight: 600;
+    color: #f5f5f7;
+    line-height: 13px;
+  }
+  .user-license {
+    font-size: 10px;
+    color: #968caf;
+  }
+  .user-license span {
+    color: #00ffa3;
+    font-weight: 600;
+  }
+  .user-chevron {
+    color: #a100ff;
+    font-size: 12px;
+    font-weight: 700;
+  }
+
+  /* Top Right Controls */
+  .top-controls {
+    position: absolute;
+    right: 16px;
+    top: 16px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 8px;
+    z-index: 2;
+  }
+
+  .win-btns {
+    display: flex;
+    gap: 4px;
+  }
+
+  .win-btn {
+    width: 24px;
+    height: 22px;
+    background: rgba(20, 12, 32, 0.9);
+    border: 1px solid rgba(75, 40, 110, 0.7);
+    border-radius: 4px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #dcd2eb;
+    font-size: 12px;
+    cursor: pointer;
+    transition: all 0.15s;
+  }
+  .win-btn:hover {
+    border-color: #c63cff;
+    background: rgba(45, 20, 70, 0.95);
+  }
+  .win-btn.close:hover {
+    border-color: #ff3c5a;
+    background: rgba(95, 20, 45, 0.95);
+    color: #ff788c;
+  }
+
+  .subtitle-strip {
+    font-size: 10px;
+    color: #967db9;
+    letter-spacing: 1.5px;
+    border-top: 1px solid rgba(161, 0, 255, 0.25);
+    padding-top: 4px;
+  }
+
+  /* Main Content Columns (Col 1: x=196, w=372. Col 2: x=582, w=372) */
+  .main-content {
+    position: absolute;
+    left: 196px;
+    top: 58px;
+    width: 758px;
+    height: 454px;
+    display: grid;
+    grid-template-columns: 372px 372px;
+    grid-template-rows: 246px 194px;
+    column-gap: 14px;
+    row-gap: 14px;
+    z-index: 2;
+  }
+
+  /* Panels (Cards) */
+  .card {
+    position: relative;
+    background: rgba(8, 2, 14, 0.88);
+    border: 1px solid rgba(135, 25, 210, 0.7);
+    clip-path: polygon(
+      8px 0%, calc(100% - 8px) 0%,
+      100% 8px, 100% calc(100% - 8px),
+      calc(100% - 8px) 100%, 8px 100%,
+      0% calc(100% - 8px), 0% 8px
+    );
+    box-shadow: 0 0 15px rgba(161, 0, 255, 0.12);
+    padding: 30px 14px 12px 14px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  /* 3-Tier Top Flare Streak */
+  .card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 90px;
+    height: 1.5px;
+    background: linear-gradient(90deg, transparent, #a100ff 25%, #fff 50%, #a100ff 75%, transparent);
+    box-shadow: 0 0 8px #d946ef;
+  }
+
+  /* Crystalline shard triangle in top right */
+  .card .shard-facet {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 32px;
+    height: 24px;
+    background: linear-gradient(135deg, rgba(168, 85, 247, 0.25) 0%, transparent 60%);
+    border-bottom: 1px solid rgba(192, 132, 252, 0.3);
+    clip-path: polygon(0 0, 100% 0, 100% 100%);
+    pointer-events: none;
+  }
+
+  /* Header inside Card */
+  .card-header {
+    position: absolute;
+    top: 6px;
+    left: 12px;
+    right: 12px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding-bottom: 5px;
+    border-bottom: 1px solid rgba(161, 0, 255, 0.2);
+  }
+
+  .card-header .h-icon {
+    width: 14px;
+    height: 14px;
+    color: #d946ef;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 11px;
+  }
+
+  .card-header .h-title {
+    font-size: 13.5px;
+    font-weight: 600;
+    color: #f5f5f7;
+    letter-spacing: 0.5px;
+  }
+
+  /* Hotkey Input (28px height) */
+  .hotkey-group {
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+  }
+  .control-label {
+    font-size: 11.5px;
+    color: #b9afcd;
+  }
+  .hotkey-pill {
+    height: 28px;
+    background: linear-gradient(90deg, #180628 0%, #2a0a44 100%);
+    border: 1px solid rgba(135, 25, 210, 0.7);
+    border-radius: 4px;
+    display: flex;
+    align-items: center;
+    padding: 0 10px;
+    gap: 6px;
+    box-shadow: 0 0 8px rgba(168, 85, 247, 0.15);
+    cursor: pointer;
+  }
+  .hk-key {
+    font-size: 12px;
+    font-weight: 600;
+    color: #ff33cc;
+  }
+  .hk-suffix {
+    font-size: 12px;
+    color: #ddd6fe;
+  }
+
+  /* Combo dropdown (28px height) */
+  .combo-pill {
+    height: 28px;
+    background: #140822;
+    border: 1px solid rgba(100, 30, 160, 0.7);
+    border-radius: 4px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 10px;
+    cursor: pointer;
+  }
+  .combo-val {
+    font-size: 12px;
+    color: #e6e1f0;
+  }
+  .combo-arrow {
+    font-size: 9px;
+    color: #c63cff;
+  }
+
+  /* Sliders (12px capsule track) */
+  .slider-group {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+  .slider-header {
+    display: flex;
+    justify-content: space-between;
+    font-size: 11.5px;
+  }
+  .slider-label {
+    color: #b9afcd;
+  }
+  .slider-val {
+    color: #f0f0f5;
+    font-weight: 500;
+  }
+  .slider-track {
+    position: relative;
+    height: 12px;
+    background: #0c0514;
+    border: 1px solid rgba(45, 18, 70, 0.8);
+    border-radius: 6px;
+    cursor: pointer;
+    overflow: visible;
+  }
+  .slider-fill {
+    height: 100%;
+    background: linear-gradient(90deg, #c026d3 0%, #9333ea 100%);
+    border-radius: 6px;
+    position: relative;
+  }
+  .slider-thumb {
+    position: absolute;
+    right: -4px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 10px;
+    height: 10px;
+    background: #fff;
+    border: 2px solid #d946ef;
+    border-radius: 50%;
+    box-shadow: 0 0 6px #d946ef;
+  }
+
+  /* Checkboxes (16x16px) */
+  .checkbox-item {
+    display: flex;
+    align-items: center;
+    gap: 9px;
+    cursor: pointer;
+  }
+  .checkbox-box {
+    width: 16px;
+    height: 16px;
+    border-radius: 3.5px;
+    border: 1px solid #3b1d54;
+    background: #0a0412;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.15s;
+  }
+  .checkbox-item.checked .checkbox-box {
+    background: #9b26eb;
+    border-color: #d946ef;
+    box-shadow: 0 0 6px rgba(198, 60, 255, 0.45);
+  }
+  .check-icon {
+    font-size: 10px;
+    color: #fff;
+    font-weight: 700;
+    display: none;
+  }
+  .checkbox-item.checked .check-icon {
+    display: block;
+  }
+  .checkbox-label {
+    font-size: 12px;
+    color: #e1dceb;
+  }
+
+  /* Footer (Line at winH - 46, text at winH - 34) */
+  .footer {
+    position: absolute;
+    left: 196px;
+    right: 18px;
+    bottom: 30px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-top: 1px solid rgba(161, 0, 255, 0.2);
+    padding-top: 10px;
+    font-size: 10.5px;
+    z-index: 2;
+  }
+  .footer-left {
+    color: #8c78af;
+    font-weight: 500;
+  }
+  .footer-right {
+    color: #a100ff;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+  }
+</style>
+</head>
+<body>
+
+<div class="gx-window">
+  <!-- Mountain Peaks Artwork -->
+  <div class="mountain-backdrop"></div>
+
+  <!-- Subtle Constellation lines -->
+  <svg class="constellation-svg" viewBox="0 0 972 588">
+    <line x1="214" y1="50" x2="369" y2="105" stroke="rgba(161, 0, 255, 0.25)" stroke-width="1" />
+    <line x1="369" y1="105" x2="564" y2="36" stroke="rgba(161, 0, 255, 0.25)" stroke-width="1" />
+    <line x1="564" y1="36" x2="622" y2="75" stroke="rgba(161, 0, 255, 0.25)" stroke-width="1" />
+    <line x1="622" y1="75" x2="855" y2="40" stroke="rgba(161, 0, 255, 0.25)" stroke-width="1" />
+    <line x1="855" y1="40" x2="719" y2="340" stroke="rgba(161, 0, 255, 0.25)" stroke-width="1" />
+    <line x1="719" y1="340" x2="816" y2="390" stroke="rgba(161, 0, 255, 0.25)" stroke-width="1" />
+    <circle cx="214" cy="50" r="1.5" fill="rgba(217, 70, 239, 0.5)" />
+    <circle cx="369" cy="105" r="1.5" fill="rgba(217, 70, 239, 0.5)" />
+    <circle cx="564" cy="36" r="1.5" fill="rgba(217, 70, 239, 0.5)" />
+    <circle cx="622" cy="75" r="1.5" fill="rgba(217, 70, 239, 0.5)" />
+    <circle cx="855" cy="40" r="1.5" fill="rgba(217, 70, 239, 0.5)" />
+  </svg>
+
+  <!-- Left Sidebar (160px) -->
+  <div class="sidebar">
+    <div class="sidebar-header">
+      <img src="images/gx_logo_256_trans.png" class="logo-emblem" alt="GX" />
+      <div class="sidebar-titles">
+        <div class="title-gx">GX</div>
+        <div class="title-sub">PREMIUM</div>
+      </div>
+    </div>
+
+    <!-- AIM -->
+    <div class="category-header">
+      <div class="cat-icon"></div>
+      AIM
+    </div>
+    <div class="tab-list">
+      <div class="tab-btn active"><span>🎯</span> Aimbot</div>
+      <div class="tab-btn"><span>👁</span> Silent Aim</div>
+      <div class="tab-btn"><span>⚡</span> Trigger Bot</div>
+    </div>
+
+    <!-- VISUALS -->
+    <div class="category-header" style="margin-top: 8px;">
+      <div class="cat-icon" style="border-radius: 1px; width: 4px; height: 10px;"></div>
+      VISUALS
+    </div>
+    <div class="tab-list">
+      <div class="tab-btn"><span>👥</span> Players</div>
+      <div class="tab-btn"><span>🚗</span> Vehicles</div>
+      <div class="tab-btn"><span>🌐</span> World</div>
+    </div>
+
+    <!-- MISC -->
+    <div class="category-header" style="margin-top: 8px;">
+      <div class="cat-icon"></div>
+      MISC
+    </div>
+    <div class="tab-list">
+      <div class="tab-btn"><span>⚡</span> Exploits</div>
+      <div class="tab-btn"><span>📍</span> Teleport</div>
+      <div class="tab-btn"><span>⚙</span> Configs</div>
+    </div>
+  </div>
+
+  <!-- User Card -->
+  <div class="user-card">
+    <div class="crown-icon">👑</div>
+    <div class="user-details">
+      <div class="user-name">Spoofy</div>
+      <div class="user-license">GX // <span>Lifetime</span></div>
+    </div>
+    <div class="user-chevron">&gt;</div>
+  </div>
+
+  <!-- Top Right Controls -->
+  <div class="top-controls">
+    <div class="win-btns">
+      <div class="win-btn">—</div>
+      <div class="win-btn close">✕</div>
+    </div>
+    <div class="subtitle-strip">C O N T R O L &nbsp; B E Y O N D &nbsp; L I M I T S</div>
+  </div>
+
+  <!-- Main 4 Panels Content -->
+  <div class="main-content">
+    <!-- Card 1: Override Config -->
+    <div class="card">
+      <div class="shard-facet"></div>
+      <div class="card-header">
+        <div class="h-icon">🎯</div>
+        <div class="h-title">OVERRIDE CONFIG</div>
+      </div>
+      <div class="hotkey-group">
+        <div class="control-label">Aim Assist Enable Key</div>
+        <div class="hotkey-pill">
+          <span class="hk-key">OFF</span>
+          <span class="hk-suffix">- Enable</span>
+        </div>
+      </div>
+      <div class="hotkey-group">
+        <div class="control-label">Aim Assist Key</div>
+        <div class="hotkey-pill">
+          <span class="hk-key">Right Mouse Button</span>
+          <span class="hk-suffix">- Aim</span>
+        </div>
+      </div>
+      <div class="hotkey-group">
+        <div class="control-label">Bone</div>
+        <div class="combo-pill">
+          <span class="combo-val">Head</span>
+          <span class="combo-arrow">▼</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Card 2: Accuracy -->
+    <div class="card">
+      <div class="shard-facet"></div>
+      <div class="card-header">
+        <div class="h-icon">🎯</div>
+        <div class="h-title">ACCURACY</div>
+      </div>
+      <div class="slider-group">
+        <div class="slider-header">
+          <span class="slider-label">Distance</span>
+          <span class="slider-val">500</span>
+        </div>
+        <div class="slider-track">
+          <div class="slider-fill" style="width: 100%;">
+            <div class="slider-thumb"></div>
+          </div>
+        </div>
+      </div>
+      <div class="slider-group">
+        <div class="slider-header">
+          <span class="slider-label">Fov</span>
+          <span class="slider-val">8.0%</span>
+        </div>
+        <div class="slider-track">
+          <div class="slider-fill" style="width: 8%;">
+            <div class="slider-thumb"></div>
+          </div>
+        </div>
+      </div>
+      <div class="slider-group">
+        <div class="slider-header">
+          <span class="slider-label">Overall Smoothing</span>
+          <span class="slider-val">85</span>
+        </div>
+        <div class="slider-track">
+          <div class="slider-fill" style="width: 85%;">
+            <div class="slider-thumb"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Card 3: General -->
+    <div class="card">
+      <div class="shard-facet"></div>
+      <div class="card-header">
+        <div class="h-icon">⚙</div>
+        <div class="h-title">GENERAL</div>
+      </div>
+      <div class="checkbox-item">
+        <div class="checkbox-box"><span class="check-icon">✓</span></div>
+        <span class="checkbox-label">Enable Legit Aim</span>
+      </div>
+      <div class="checkbox-item">
+        <div class="checkbox-box"><span class="check-icon">✓</span></div>
+        <span class="checkbox-label">Show Fov</span>
+      </div>
+      <div class="checkbox-item">
+        <div class="checkbox-box"><span class="check-icon">✓</span></div>
+        <span class="checkbox-label">Bidirectional Smoothing</span>
+      </div>
+      <div class="checkbox-item">
+        <div class="checkbox-box"><span class="check-icon">✓</span></div>
+        <span class="checkbox-label">Prediction</span>
+      </div>
+    </div>
+
+    <!-- Card 4: Misc -->
+    <div class="card">
+      <div class="shard-facet"></div>
+      <div class="card-header">
+        <div class="h-icon">☰</div>
+        <div class="h-title">MISC</div>
+      </div>
+      <div class="checkbox-item">
+        <div class="checkbox-box"><span class="check-icon">✓</span></div>
+        <span class="checkbox-label">Ignore Ped</span>
+      </div>
+      <div class="checkbox-item checked">
+        <div class="checkbox-box"><span class="check-icon">✓</span></div>
+        <span class="checkbox-label">Ignore Dead</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer Divider & Text -->
+  <div class="footer">
+    <div class="footer-left">GX MENU v1.14</div>
+    <div class="footer-right">PRIVATE &nbsp;// &nbsp;SECURE &nbsp;// &nbsp;UNDETECTED</div>
+  </div>
+</div>
+
+<!-- Futuristic Cinematic Welcome Banner -->
+<style>
+  .welcome-banner-wrapper {
+    position: fixed;
+    top: 24px;
+    left: 50%;
+    transform: translateX(-50%) translateY(-30px) scale(0.96);
+    opacity: 0;
+    pointer-events: none;
+    z-index: 1000;
+    transition: opacity 0.35s cubic-bezier(0.16, 1, 0.3, 1), transform 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  .welcome-banner-wrapper.show {
+    opacity: 1;
+    transform: translateX(-50%) translateY(0) scale(1);
+    pointer-events: auto;
+  }
+  .welcome-banner-card {
+    width: 440px;
+    height: 94px;
+    background: rgba(8, 2, 14, 0.94);
+    border: 1px solid rgba(198, 60, 255, 0.85);
+    border-radius: 6px;
+    box-shadow: 0 0 25px rgba(161, 0, 255, 0.5), 0 15px 35px rgba(0, 0, 0, 0.9);
+    display: flex;
+    align-items: center;
+    padding: 10px 18px;
+    gap: 16px;
+    position: relative;
+    overflow: hidden;
+    backdrop-filter: blur(12px);
+  }
+  .welcome-banner-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: calc(50% - 35px);
+    width: 70px;
+    height: 2px;
+    background: #ffffff;
+    box-shadow: 0 0 6px #ffffff, 0 0 14px #d946ef;
+  }
+  .welcome-logo-box {
+    width: 50px;
+    height: 50px;
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: radial-gradient(circle, rgba(161, 0, 255, 0.35) 0%, rgba(14, 6, 24, 0.8) 70%);
+    border-radius: 50%;
+    border: 1.2px solid rgba(198, 60, 255, 0.8);
+    box-shadow: 0 0 10px rgba(161, 0, 255, 0.4);
+  }
+  .welcome-logo-img {
+    width: 38px;
+    height: 38px;
+    object-fit: contain;
+    aspect-ratio: 1 / 1;
+    filter: drop-shadow(0 0 6px rgba(198, 60, 255, 0.8));
+    display: block;
+  }
+  .welcome-details {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    flex: 1;
+  }
+  .welcome-title-row {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+  .welcome-greeting {
+    font-size: 10px;
+    font-weight: 600;
+    color: #b9afcd;
+    letter-spacing: 1px;
+  }
+  .welcome-username {
+    font-size: 14px;
+    font-weight: 800;
+    color: #ffffff;
+    letter-spacing: 0.5px;
+    text-shadow: 0 0 8px rgba(255, 255, 255, 0.4);
+  }
+  .welcome-badge-row {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .welcome-status-badge {
+    font-size: 10px;
+    font-weight: 700;
+    color: #00ffa3;
+    text-shadow: 0 0 6px rgba(0, 255, 163, 0.4);
+  }
+  .welcome-sub-tier {
+    font-size: 9.5px;
+    font-weight: 600;
+    color: #b9afcd;
+  }
+  .tier-green {
+    color: #00ffa3;
+    font-weight: 700;
+  }
+  .welcome-hwid-text {
+    font-size: 9px;
+    color: #8c78af;
+    margin-top: 2px;
+  }
+  .welcome-laser-timer {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    height: 2.5px;
+    width: 100%;
+    background: rgba(161, 0, 255, 0.2);
+  }
+  .welcome-timer-fill {
+    height: 100%;
+    width: 100%;
+    background: linear-gradient(90deg, #c026d3, #9333ea, #00ffa3);
+    box-shadow: 0 0 6px #c026d3;
+    transition: width 3.2s linear;
+  }
+</style>
+
+<div class="welcome-banner-wrapper show" id="welcomeBanner">
+  <div class="welcome-banner-card">
+    <div class="welcome-logo-box">
+      <img src="images/logo.png" alt="GX Emblem" class="welcome-logo-img">
+    </div>
+    <div class="welcome-details">
+      <div class="welcome-title-row">
+        <span class="welcome-greeting">WELCOME BACK,</span>
+        <span class="welcome-username" id="welcomeUserDisplay">SPOOFY</span>
+      </div>
+      <div class="welcome-badge-row">
+        <span class="welcome-status-badge">● STATUS: AUTHENTICATED</span>
+        <span class="welcome-sub-tier">GX // <span class="tier-green">LIFETIME</span></span>
+      </div>
+      <div class="welcome-hwid-text">🔒 Hardware ID Matched &amp; 256-Bit Encrypted</div>
+    </div>
+    <div class="welcome-laser-timer">
+      <div class="welcome-timer-fill" id="welcomeTimerFill"></div>
+    </div>
+  </div>
+</div>
+
+<script>
+  // Simple interactive controls
+  document.querySelectorAll('.checkbox-item').forEach(item => {
+    item.addEventListener('click', () => {
+      item.classList.toggle('checked');
+    });
+  });
+
+  document.querySelectorAll('.tab-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+    });
+  });
+
+  // Welcome banner interaction
+  const banner = document.getElementById('welcomeBanner');
+  const timer = document.getElementById('welcomeTimerFill');
+  function triggerBanner() {
+    if (!banner) return;
+    if (timer) {
+      timer.style.transition = 'none';
+      timer.style.width = '100%';
+      setTimeout(() => {
+        timer.style.transition = 'width 3.2s linear';
+        timer.style.width = '0%';
+      }, 50);
+    }
+    banner.classList.add('show');
+    setTimeout(() => { banner.classList.remove('show'); }, 3500);
+  }
+
+  // Trigger on launch
+  setTimeout(triggerBanner, 300);
+
+  // Click on user info card triggers it
+  const userCard = document.querySelector('.user-info');
+  if (userCard) {
+    userCard.style.cursor = 'pointer';
+    userCard.addEventListener('click', triggerBanner);
+  }
+</script>
+
+</body>
+</html>
